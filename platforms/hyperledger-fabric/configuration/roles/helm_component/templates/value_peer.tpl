@@ -109,3 +109,6 @@ spec:
           requests:
             memory: 512M
             cpu: 0.5
+{% if network.upgrade is defined %}
+    upgrade: "{{ network.upgrade }}"
+{% endif %}
