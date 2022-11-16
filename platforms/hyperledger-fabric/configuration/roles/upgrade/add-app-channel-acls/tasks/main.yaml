@@ -23,13 +23,13 @@
 # Check if acl file exists
 - name: Check that acl json exists
   stat:
-    path: "{{channel.acls}}"
+    path: "{{ channel.acls }}"
   register: acls_file
 
-# Copy file
-- name: Copy file 
+# Copy file if acls json exists
+- name: Copy file if acls json exists
   ansible.builtin.copy:
-    src: "{{channel.acls}}"
+    src: "{{ channel.acls }}"
     dest: "{{ build_path }}/channel-artifacts/add_app_channel_acls.json"
   when: acls_file.stat.exists
 

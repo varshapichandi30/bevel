@@ -28,4 +28,3 @@
     loop_var: peer
   when:
     - component_services.peers is defined
-        

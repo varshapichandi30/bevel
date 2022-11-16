@@ -13,10 +13,9 @@
 - name: Create yaml file with orderer address values
   template:
     src: "orderer-endpoints.yaml"
-    dest: "{{ values_file }}"
+    dest: "{{ build_path }}/channel-artifacts/orderer-endpoints.yaml"
   vars:
     ordererOrgEndpoint: "{{ ordererOrg.name }}MSPEndpoint"
-    values_file: "{{ build_path }}/channel-artifacts/orderer-endpoints.yaml"
 
 # Save the yaml file to a variable
 - name: Save yaml to variable
@@ -25,7 +24,7 @@
     name: ordererEndPoints
 
 # Convert the yaml file to json
-- name: convert yaml to json
+- name: Convert yaml to json
   copy:
     content: "{{ ordererEndPoints | to_nice_json }}"
     dest: "{{ build_path }}/channel-artifacts/ordererAddresses.json"

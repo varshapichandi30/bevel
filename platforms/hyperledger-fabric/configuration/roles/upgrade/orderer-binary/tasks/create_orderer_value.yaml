@@ -34,7 +34,7 @@
     gitops: "{{ item.gitops }}"
     GIT_RESET_PATH: "platforms/hyperledger-fabric/configuration"
     msg: "[ci skip] Checking git status"
-    files_dir: "{{values_dir}}"
+    files_dir: "{{ values_dir }}"
   tags:
     - notest
 

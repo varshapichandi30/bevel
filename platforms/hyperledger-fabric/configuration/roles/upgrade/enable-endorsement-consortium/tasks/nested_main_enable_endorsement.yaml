@@ -13,10 +13,9 @@
 - name: Create yaml for adding endorsement policies in system channel
   template:
     src: "enable-endorsement-consortium.yaml"
-    dest: "{{ values_file }}"
+    dest: "{{ build_path }}/channel-artifacts/enable-endorsement-consortium.yaml"
   vars:
     OrgName: "{{ participant.name }}"
-    values_file: "{{ build_path }}/channel-artifacts/enable-endorsement-consortium.yaml"
 
 # Save the yaml file to a variable
 - name: Save yaml to variable

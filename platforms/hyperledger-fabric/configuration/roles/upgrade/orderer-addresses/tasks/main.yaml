@@ -24,7 +24,7 @@
 # Construct the orderer addresses list
 - name: Construct the orderer addresses list
   set_fact:
-    end_points:
+    endpoints:
     |-
       {% for orderer in network.orderers %}
         "{{ orderer.uri }}",

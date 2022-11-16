@@ -2,4 +2,4 @@
   Endpoints:
     mod_policy: Admins
     value:
-      addresses: [{{end_points}}]
+      addresses: [{{endpoints}}]
