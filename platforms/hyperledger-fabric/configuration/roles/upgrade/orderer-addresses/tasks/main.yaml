@@ -43,7 +43,7 @@
     loop_var: org
   when: org.type == 'orderer'
 
-# update orderer address in application channel(s)
+# Update orderer address in application channel(s)
 - name: Update orderer address application channel(s)
   include_tasks: update_orderer_address_appchannel.yaml
   loop: "{{ network.channels }}"

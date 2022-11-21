@@ -23,7 +23,7 @@
 # Create app-channel policies json
 - name: Create app-channel policies json
   copy:
-    content: "{{ '{\"appPolicies\":{\"Endorsement\":{\"mod_policy\":\"Admins\",\"policy\":{\"type\":3,\"value\":{\"rule\":\"MAJORITY\",\"sub_policy\":\"Endorsement\"}},\"version\":\"0\"},\"LifecycleEndorsement\":{\"mod_policy\":\"Admins\",\"policy\":{\"type\":3,\"value\":{\"rule\":\"MAJORITY\",\"sub_policy\":\"Endorsement\"}},\"version\":\"0\"}}}' | from_json | to_nice_json}}"
+    src: "add_app_channel_policies.json"
     dest: "{{ build_path }}/channel-artifacts/add_app_channel_policies.json"
 
 # This task add endorsement and lifecycle in app channels application group

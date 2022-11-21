@@ -20,10 +20,10 @@
     path: "{{ build_path }}/channel-artifacts/"
     state: directory
 
-# Create a capabilities json
-- name: Create capabilities json
+# Copy capabilities json to channel artifacts
+- name: Copy capabilities json to channel artifacts
   copy:
-    content: "{{ '{\"channel\":{\"mod_policy\":\"Admins\",\"value\":{\"capabilities\":{\"V2_0\":{}}},\"version\":\"0\"},\"orderer\":{\"mod_policy\":\"Admins\",\"value\":{\"capabilities\":{\"V2_0\":{}}},\"version\":\"0\"},\"application\":{\"mod_policy\":\"Admins\",\"value\":{\"capabilities\":{\"V2_0\":{}}},\"version\":\"0\"}}' | from_json | to_nice_json}}"
+    src: "capabilities.json"
     dest: "{{ build_path }}/channel-artifacts/capabilities.json"
 
 # Check or wait for the Orderer pod
@@ -33,7 +33,7 @@
   vars:
     component_type: "Pod"
     orderer: "{{ network.orderers | first }}"
-    org_query: "organizations[?name=='{{orderer.org_name}}']"
+    org_query: "organizations[?name=='{{ orderer.org_name }}']"
     org: "{{ network | json_query(org_query) | first }}"
     namespace: "{{ org.name | lower }}-net"
     kubernetes: "{{ org.k8s }}"
@@ -55,7 +55,7 @@
   include_tasks: orderer_group_capability.yaml
   vars:
     orderer: "{{ network.orderers | first }}"
-    org_query: "organizations[?name=='{{orderer.org_name}}']"
+    org_query: "organizations[?name=='{{ orderer.org_name }}']"
     org: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
     component_ns: "{{ org.name | lower }}-net"
@@ -78,7 +78,7 @@
 - name: Call sign_orderer.yaml to sign from new update block
   include_tasks: sign_orderer.yaml
   vars:
-    org_query: "orderers[?org_name=='{{org.name}}']"
+    org_query: "orderers[?org_name=='{{ org.name }}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
     component_ns: "{{ org.name | lower }}-net"
@@ -91,7 +91,7 @@
 - name: Call update_orderer.yaml to add the new orderer to the existing network
   include_tasks: update_orderer.yaml
   vars:
-    org_query: "orderers[?org_name=='{{org.name}}']"
+    org_query: "orderers[?org_name=='{{ org.name }}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
     component_ns: "{{ org.name | lower }}-net"
@@ -115,7 +115,7 @@
   include_tasks: channel_group_capability.yaml
   vars:
     orderer: "{{ network.orderers | first }}"
-    org_query: "organizations[?name=='{{orderer.org_name}}']"
+    org_query: "organizations[?name=='{{ orderer.org_name }}']"
     org: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
     component_ns: "{{ org.name | lower }}-net"
@@ -138,7 +138,7 @@
 - name: Call sign_orderer.yaml to sign from new update block
   include_tasks: sign_orderer.yaml
   vars:
-    org_query: "orderers[?org_name=='{{org.name}}']"
+    org_query: "orderers[?org_name=='{{ org.name }}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
     component_ns: "{{ org.name | lower }}-net"
@@ -151,7 +151,7 @@
 - name: Call update_orderer.yaml to add the new orderer to the existing network
   include_tasks: update_orderer.yaml
   vars:
-    org_query: "orderers[?org_name=='{{org.name}}']"
+    org_query: "orderers[?org_name=='{{ org.name }}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
     component_ns: "{{ org.name | lower }}-net"

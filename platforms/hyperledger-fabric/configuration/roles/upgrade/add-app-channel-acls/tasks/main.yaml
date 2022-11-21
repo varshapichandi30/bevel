@@ -14,8 +14,8 @@
     path: "{{ build_path }}"
     state: absent
 
-# Create directory
-- name: Create directory
+# Create build directory
+- name: Create build directory
   file:
     path: "{{ build_path }}/channel-artifacts/"
     state: directory

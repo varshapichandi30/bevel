@@ -33,7 +33,7 @@
     gitops: "{{ item.gitops }}"
     GIT_RESET_PATH: "platforms/hyperledger-fabric/configuration"
     msg: "[ci skip] Checking git status"
-    files_dir: "{{values_dir}}"
+    files_dir: "{{ values_dir }}"
   tags:
     - notest
 
@@ -51,10 +51,10 @@
     - notest
 
 # wait until the pod is not in running state as there is a time lag between when pod is recreated
-- name: 'Wait for {{ peer.name }} in {{ item.name | lower}}-net to terminate'
+- name: 'Wait for {{ peer.name }} in {{ item.name | lower }}-net to terminate'
   k8s_info:
     kind: "Pod"
-    namespace: "{{ item.name | lower}}-net"
+    namespace: "{{ item.name | lower }}-net"
     kubeconfig: "{{ item.k8s.config_file }}"
     context: "{{ item.k8s.context }}"
     label_selectors:
@@ -62,7 +62,7 @@
     field_selectors:
       - status.phase!=Running
   register: component_data
-  retries: "{{ 4*network.env.retry_count}}"
+  retries: "{{ 4*network.env.retry_count }}"
   delay: "{{ delay | default(2) }}"
   until: component_data.resources|length > 0
   when: git_updated is defined
@@ -70,10 +70,10 @@
     - notest
 
 # Wait for peer pod to be in the state of running
-- name: 'Wait for {{ peer.name }} in {{ item.name | lower}}-net'
+- name: 'Wait for {{ peer.name }} in {{ item.name | lower }}-net'
   k8s_info:
     kind: "Pod"
-    namespace: "{{ item.name | lower}}-net"
+    namespace: "{{ item.name | lower }}-net"
     kubeconfig: "{{ item.k8s.config_file }}"
     context: "{{ item.k8s.context }}"
     label_selectors:
@@ -81,7 +81,7 @@
     field_selectors:
       - status.phase=Running
   register: component_data
-  retries: "{{ network.env.retry_count}}"
+  retries: "{{ network.env.retry_count }}"
   delay: "{{ delay | default(5) }}"
   until: component_data.resources|length > 0
   when: git_updated is defined
@@ -89,7 +89,7 @@
     - notest
 
 # Ask the operator to verify the logs
-- name: 'Verify logs for pod {{ peer.name }}-0 in {{ item.name | lower}}-net'
+- name: 'Verify logs for pod {{ peer.name }}-0 in {{ item.name | lower }}-net'
   pause:
     prompt: "Please verify logs of container {{ peer.name }} in Pod {{ peer.name }}-0 within namespace {{ item.name | lower}}-net to ensure it is upgraded and ready
             (ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)"

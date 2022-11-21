@@ -29,7 +29,7 @@
     VAULT_TOKEN: "{{ vault.root_token }}"
   register: vault_orderer_genesis_block
 
-# Declare fact
+# Get the genesis block and store in variable
 - set_fact:
     genesis_block: "{{ vault_orderer_genesis_block.stdout }}"
 

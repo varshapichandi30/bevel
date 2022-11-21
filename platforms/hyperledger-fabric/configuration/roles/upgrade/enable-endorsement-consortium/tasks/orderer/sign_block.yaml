@@ -53,7 +53,7 @@
       - app = cli
   register: get_cli
   until: ("Running" in get_cli|json_query('resources[*].status.phase'))
-  retries: "{{ network.env.retry_count}}"
+  retries: "{{ network.env.retry_count }}"
   delay: 40
 
 # This task signs the configuration block
