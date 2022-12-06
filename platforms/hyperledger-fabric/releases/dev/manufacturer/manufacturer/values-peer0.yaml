@@ -17,11 +17,12 @@ spec:
         namespace: flux-local
       chart: platforms/hyperledger-fabric/charts/peernode    
   values:
+    upgrade: "yes"
     metadata:
       namespace: manufacturer-net
       images:
-        couchdb: hyperledger/fabric-couchdb:0.4.18
-        peer: hyperledger/fabric-peer:1.4.8
+        couchdb: couchdb:3.1
+        peer: hyperledger/fabric-peer:2.2.9
         alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
         
     peer:
@@ -31,7 +32,7 @@ spec:
       localmspid: manufacturerMSP
       loglevel: info
       tlsstatus: true
-      builder: hyperledger/fabric-ccenv:1.4.8
+      builder: hyperledger/fabric-ccenv:2.2.9
       couchdb:
         username: manufacturer-user
 
