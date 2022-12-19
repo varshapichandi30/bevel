@@ -11,9 +11,5 @@
     kubectl create namespace argocd
     kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
     argocd login --core
-
-- name: Creating the Application and syncing with repo
-  shell: |
     kubectl config set-context --current --namespace=argocd 
-    argocd app create guestbook --repo https://github.com/Karthikey22/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default
-    argocd app sync guestbook
+    
