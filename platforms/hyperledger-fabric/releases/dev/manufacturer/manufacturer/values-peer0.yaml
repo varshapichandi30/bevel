@@ -74,3 +74,8 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
+  syncPolicy:
+    automated:
+      # Do not enable pruning yet!
+      prune: false # Specifies if resources should be pruned during auto-syncing ( false by default ).
+      selfHeal: true
