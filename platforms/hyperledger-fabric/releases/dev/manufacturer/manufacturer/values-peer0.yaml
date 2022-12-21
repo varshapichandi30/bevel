@@ -11,7 +11,7 @@ spec:
     targetRevision: 1.16.1
     helm:
       releaseName: manufacturer-peer0
-      values:
+  values:
           metadata:
             namespace: manufacturer-net
             images:
