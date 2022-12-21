@@ -5,7 +5,8 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  values:
+  chart:
+    values:
           metadata:
             namespace: manufacturer-net
             images:
@@ -74,4 +75,7 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
-  
+  syncOptions:
+    -validate: false
+    prune: true
+    selfHeal: true
