@@ -13,4 +13,4 @@ spec:
       releaseName: manufacturer-peer0
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: manufacturer-net
+    namespace: argocd
