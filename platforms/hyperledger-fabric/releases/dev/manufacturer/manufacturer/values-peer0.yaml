@@ -2,13 +2,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: manufacturer-peer0
-  namespace: argocd
+  namespace: manufacturer-net
 spec:
   project: default
   source:
-    repoURL: https://github.com/Karthikey22/bevel.git
-    targetRevision: HEAD
     chart: platforms/hyperledger-fabric/charts/peernode
+    repoURL: https://github.com/Karthikey22/bevel.git
+    targetRevision: 1.16.1
+    helm:
+      releaseName: manufacturer-peer0
   destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
+    server: "https://kubernetes.default.svc"
+    namespace: manufacturer-net
