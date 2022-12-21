@@ -5,12 +5,7 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    chart: platforms/hyperledger-fabric/charts/peernode
-    repoURL: https://github.com/Karthikey22/bevel.git
-    targetRevision: 1.16.1
-    helm:
-      values:
+  values:
           metadata:
             namespace: manufacturer-net
             images:
@@ -70,8 +65,16 @@ spec:
                 requests:
                   memory: 512M
                   cpu: 0.5
+  source:
+    chart: platforms/hyperledger-fabric/charts/peernode
+    repoURL: https://github.com/Karthikey22/bevel.git
+    targetRevision: 1.16.1
+    helm:
       releaseName: manufacturer-peer0
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
- 
+  syncOptions:
+    -validate: false
+    prune: true
+    selfHeal: true
