@@ -9,7 +9,7 @@ spec:
     chart: platforms/hyperledger-fabric/charts/peernode
     repoURL: https://github.com/Karthikey22/bevel.git
     path: platforms/hyperledger-fabric/charts/peernode
-    targetRevision: 1.16.1
+    targetRevision: HEAD
     helm:
       releaseName: manufacturer-peer0
       values: |-
