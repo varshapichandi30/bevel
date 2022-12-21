@@ -10,8 +10,7 @@ spec:
     repoURL: https://github.com/Karthikey22/bevel.git
     targetRevision: 1.16.1
     helm:
-      releaseName: manufacturer-peer0
-  values:
+      values:
           metadata:
             namespace: manufacturer-net
             images:
@@ -71,6 +70,7 @@ spec:
                 requests:
                   memory: 512M
                   cpu: 0.5
+      releaseName: manufacturer-peer0
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
