@@ -75,6 +75,15 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      source:
+        path: platforms/hyperledger-fabric/charts/peernode
+        repoURL: https://github.com/Karthikey22/bevel.git
+        targetRevision: HEAD
   syncPolicy:
     automated:
       # Do not enable pruning yet!
