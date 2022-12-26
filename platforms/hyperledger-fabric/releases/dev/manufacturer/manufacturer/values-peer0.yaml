@@ -4,7 +4,7 @@ metadata:
   name: manufacturer-peer0
   namespace: argocd
 spec:
-  #project: default
+  project: default
   source:
     repoURL: https://github.com/Karthikey22/bevel
     targetRevision: "13.2.1"
