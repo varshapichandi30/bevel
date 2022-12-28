@@ -11,19 +11,20 @@ metadata:
   images:
     #Provide the valid image name and version for fabric couchdb
     #Eg. couchdb: hyperledger/fabric-couchdb:0.4.14
-    couchdb: 
+    couchdb: hyperledger/fabric-couchdb:0.4.14
     #Provide the valid image name and version for fabric peer
     #Eg. hyperledger/fabric-peer:1.4.0
-    peer: 
+    peer: hyperledger/fabric-peer:1.4.0
     #Provide the valid image name and version to read certificates from vault server 
     #Eg. alpineutils: hyperledgerlabs/alpine-utils:1.0
-    alpineutils: 
+    alpineutils: hyperledgerlabs/alpine-utils:1.0
   #Provide the custom labels  
   #NOTE: Provide labels other than name, release name , release service, chart version , chart name, run
   #These lables will not be applied to VolumeClaimTemplate of StatefulSet as labels are automatically picked up by Kubernetes
   #Eg. labels:
   #      role: peer
   labels:
+    role: peer
 
 peer:
   #Provide the name of the peer as per deployment yaml.
@@ -34,24 +35,24 @@ peer:
   gossippeeraddress: peer1.org1-example-com.svc.cluster.local:7051
   #Provide the url of gossip external endpoint and  port to be mentioned is ambassador https service port
   #Eg. gossipexternalendpoint: peer1-ext.org1-example-com:8443
-  gossipexternalendpoint:  
+  gossipexternalendpoint:  peer1-ext.org1-example-com:8443
   #Provide the localmspid for organization
   #Eg. localmspid: Org1MSP
   localmspid: Org1MSP
   #Provide the loglevel for organization's peer
   #Eg. loglevel: info
-  loglevel:
+  loglevel: info
   #Provide the value for tlsstatus to be true or false for organization's peer
   #Eg. tlsstatus: true
-  tlsstatus:
+  tlsstatus: true
   #Provide a valid chaincode builder image for Fabric
   #Eg. builder: hyperledger/fabric-ccenv:1.4.8
-  builder:
+  builder: hyperledger/fabric-ccenv:1.4.8
   couchdb:
     #Provide the username for couchdb login
     #If couchdb username is provided, it is mandatory to provide password for the same
     #Eg. username: org1-user
-    username:
+    username: org1-user
   mspconfig:
     #Provide the members of the MSP in organizational unit identifiers
     #Eg.organizationalunitidentifiers:
@@ -97,7 +98,7 @@ storage:
 vault:
   #Provide the vaultrole for an organization
   #Eg. vaultrole: org1-vault-role
-  role:
+  role: org1-vault-role
   #Provide the vault server address
   #Eg. vaultaddress: http://Vault-884963190.eu-west-1.elb.amazonaws.com
   address:
@@ -131,21 +132,21 @@ service:
     grpc:
       #Provide a nodeport for grpc service in the range of 30000-32767 (optional)
       #Eg. nodeport: 30001
-      nodeport:
+      nodeport: 30001
       #Provide a cluster IP port for grpc service to be exposed
       #Eg. clusteripport: 7051
       clusteripport: 7051
     events:
       #Provide a nodeport for event service in the range of 30000-32767 (optional)
       #Eg. nodeport: 30002
-      nodeport:
+      nodeport: 30002
       #Provide a cluster IP port for event service to be exposed
       #Eg. clusteripport: 7053
       clusteripport: 7053
     couchdb:
       #Provide a nodeport for couchdb service in the range of 30000-32767 (optional)
       #Eg. nodeport: 30003
-      nodeport:
+      nodeport: 30003
       #Provide a cluster IP port for couchdb service to be exposed
       #Eg. clusteripport: 5984
       clusteripport: 5984
