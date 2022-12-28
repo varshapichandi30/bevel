@@ -6,11 +6,11 @@ metadata:
 spec:
   project: default
   source:
-    chart: platforms/hyperledger-fabric/charts/peernode
-    repoURL: https://github.com/Karthikey22/bevel/blob/main
-    targetRevision: 1.16.1
+    path: platforms/hyperledger-fabric/charts/peernode
+    repoURL: https://github.com/Karthikey22/bevel.git
+    targetRevision: HEAD
     helm:
-      releaseName: sample-release
+      releaseName: sample-app
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
