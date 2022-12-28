@@ -83,14 +83,14 @@ storage:
     storageclassname:
     #Provide the storagesize for storage class
     #Eg. storagesize: 512Mi
-    storagesize:
+    storagesize: 512Mi
   couchdb:
     #Provide the storageclassname for couchdb
     #Eg. storageclassname: aws-storage
     storageclassname:
     #Provide the storagesize for storage class
     #Eg. storagesize: 512Mi
-    storagesize:
+    storagesize: 512Mi
 
 
 
