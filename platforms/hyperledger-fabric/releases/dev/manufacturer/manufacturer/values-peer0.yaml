@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Karthikey22/bevel/blob/main
+    repoURL: https://github.com/Karthikey22/bevel/tree/main
     targetRevision: "13.2.1"
     chart: platforms/hyperledger-fabric/charts/peernode
     helm:
