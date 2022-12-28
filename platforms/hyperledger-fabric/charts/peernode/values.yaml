@@ -28,16 +28,16 @@ metadata:
 peer:
   #Provide the name of the peer as per deployment yaml.
   #Eg. name: peer0
-  name:
+  name: peer0
   #Provide the url of gossipping peer and port to be mentioned is grpc cluster IP port
   #Eg. gossippeeraddress: peer1.org1-example-com.svc.cluster.local:7051
-  gossippeeraddress:
+  gossippeeraddress: peer1.org1-example-com.svc.cluster.local:7051
   #Provide the url of gossip external endpoint and  port to be mentioned is ambassador https service port
   #Eg. gossipexternalendpoint: peer1-ext.org1-example-com:8443
   gossipexternalendpoint:  
   #Provide the localmspid for organization
   #Eg. localmspid: Org1MSP
-  localmspid:
+  localmspid: Org1MSP
   #Provide the loglevel for organization's peer
   #Eg. loglevel: info
   loglevel:
