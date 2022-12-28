@@ -28,30 +28,30 @@ metadata:
 peer:
   #Provide the name of the peer as per deployment yaml.
   #Eg. name: peer0
-  name: 
+  name:
   #Provide the url of gossipping peer and port to be mentioned is grpc cluster IP port
   #Eg. gossippeeraddress: peer1.org1-example-com.svc.cluster.local:7051
-  gossippeeraddress: 
+  gossippeeraddress:
   #Provide the url of gossip external endpoint and  port to be mentioned is ambassador https service port
   #Eg. gossipexternalendpoint: peer1-ext.org1-example-com:8443
-  gossipexternalendpoint: 
+  gossipexternalendpoint:  
   #Provide the localmspid for organization
   #Eg. localmspid: Org1MSP
-  localmspid: 
+  localmspid:
   #Provide the loglevel for organization's peer
   #Eg. loglevel: info
-  loglevel: 
+  loglevel:
   #Provide the value for tlsstatus to be true or false for organization's peer
   #Eg. tlsstatus: true
-  tlsstatus: 
+  tlsstatus:
   #Provide a valid chaincode builder image for Fabric
   #Eg. builder: hyperledger/fabric-ccenv:1.4.8
-  builder: 
+  builder:
   couchdb:
     #Provide the username for couchdb login
     #If couchdb username is provided, it is mandatory to provide password for the same
     #Eg. username: org1-user
-    username: 
+    username:
   mspconfig:
     #Provide the members of the MSP in organizational unit identifiers
     #Eg.organizationalunitidentifiers:
@@ -83,21 +83,21 @@ storage:
     storageclassname:
     #Provide the storagesize for storage class
     #Eg. storagesize: 512Mi
-    storagesize: 
+    storagesize:
   couchdb:
     #Provide the storageclassname for couchdb
     #Eg. storageclassname: aws-storage
     storageclassname:
     #Provide the storagesize for storage class
     #Eg. storagesize: 512Mi
-    storagesize: 
+    storagesize:
 
 
 
 vault:
   #Provide the vaultrole for an organization
   #Eg. vaultrole: org1-vault-role
-  role: 
+  role:
   #Provide the vault server address
   #Eg. vaultaddress: http://Vault-884963190.eu-west-1.elb.amazonaws.com
   address:
@@ -131,24 +131,24 @@ service:
     grpc:
       #Provide a nodeport for grpc service in the range of 30000-32767 (optional)
       #Eg. nodeport: 30001
-      nodeport: 
+      nodeport:
       #Provide a cluster IP port for grpc service to be exposed
       #Eg. clusteripport: 7051
-      clusteripport: 
+      clusteripport: 7051
     events:
       #Provide a nodeport for event service in the range of 30000-32767 (optional)
       #Eg. nodeport: 30002
-      nodeport: 
+      nodeport:
       #Provide a cluster IP port for event service to be exposed
       #Eg. clusteripport: 7053
-      clusteripport: 
+      clusteripport: 7053
     couchdb:
       #Provide a nodeport for couchdb service in the range of 30000-32767 (optional)
       #Eg. nodeport: 30003
-      nodeport: 
+      nodeport:
       #Provide a cluster IP port for couchdb service to be exposed
       #Eg. clusteripport: 5984
-      clusteripport: 
+      clusteripport: 5984
       
 annotations:
   #Extra annotations
