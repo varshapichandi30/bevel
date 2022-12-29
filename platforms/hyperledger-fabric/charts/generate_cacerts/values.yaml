@@ -17,10 +17,10 @@ metadata:
   images:
     #Provide the valid image name and version for fabric tools
     #Eg. fabric-tools: hyperledger/fabrictools:1.4.0
-    fabrictools:
+    fabrictools: hyperledger/fabrictools:1.4.0
     #Provide the valid image name and version to read certificates from vault server
     #Eg.alpineutils: hyperledgerlabs/alpine-utils:1.0
-    alpineutils:
+    alpineutils: hyperledgerlabs/alpine-utils:1.0
   #Provide the custom labels
   #NOTE: Provide labels other than name, release name , release service, chart version , chart name , app.
   #Eg. labels:
@@ -51,4 +51,4 @@ vault:
 ca:
   #Provide the subject of the services ca organization's
   #Eg. subject: "/C=GB/ST=London/L=London/O=Carrier/CN=org1-net"
-  subject: 
+  subject: "/C=GB/ST=London/L=London/O=Carrier/CN=org1-net"
