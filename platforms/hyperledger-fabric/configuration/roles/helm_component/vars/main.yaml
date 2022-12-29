@@ -12,7 +12,7 @@ helm_templates:
   orderers: orderernode.tpl
   zkkafka: zkkafka.tpl
   peers: peernode.tpl
-  value_peer: value_peer.tpl
+  value_peer: value-peer-argo.tpl
   create_channel_job: create_channel_job.tpl
   join_channel_job: join_channel_job.tpl
   install_chaincode_job: install_chaincode_job.tpl
@@ -23,6 +23,6 @@ helm_templates:
   cli: cli.tpl
   commit_chaincode_job: commit_chaincode_job.tpl
   approve_chaincode_job: approve_chaincode_job.tpl
-  cacerts_job: cacerts_job.tpl
+  cacerts_job: cacert_argo.tpl
   vault_kubernetes_job: vault_kubernetes_job.tpl
   operations_console: operations_console.tpl

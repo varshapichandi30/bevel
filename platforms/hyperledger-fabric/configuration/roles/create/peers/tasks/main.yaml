@@ -34,7 +34,7 @@
     name: helm_component
   vars:
     name: "{{ item.name | lower }}"
-    type: "value_peer"
+    type: "value_peer" 
     component_name: values-{{ peer.name }}
     couchdb_image: "{{ couchdb_image_version[network.version] }}"
     peer_image: "hyperledger/fabric-peer:{{ network.version }}"
@@ -59,11 +59,15 @@
   tags:
     - notest
 
-# Wait for the Orderer HelmRelease
-- name: 'Wait for {{ peer.name }} HelmRelease in {{ namespace }}'
+- name: Creating application for relases folder
+  shell: |
+    kubectl apply -n manufacturer-net -f /home/bevel/platforms/hyperledger-fabric/releases/dev/manufacturer/manufacturer/values-peer0.yaml
+  
+# Wait for the Orderer Application
+- name: 'Wait for {{ peer.name }} Application in {{ namespace }}'
   k8s_info:
-    api_version: "helm.toolkit.fluxcd.io/v2beta1"
-    kind: "HelmRelease"
+    api_version: "argoproj.io/v1alpha1"
+    kind: "Application"
     namespace: "{{ item.name | lower }}-net"
     kubeconfig: "{{  item.k8s.config_file }}"
     context: "{{ item.k8s.context }}"
