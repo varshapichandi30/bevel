@@ -7,13 +7,13 @@
 metadata:
   #Provide organization's name
   #Eg. namespace: org1
-  name:
+  name: org1
   #Provide organization's component_name
   #Eg. namespace: org1-net
-  component_name:
+  component_name: org1-net
   #Provide the namespace for organization's peer
   #Eg. namespace: org1-example-com
-  namespace: default
+  namespace: supplychain-net
   images:
     #Provide the valid image name and version for fabric tools
     #Eg. fabric-tools: hyperledger/fabrictools:1.4.0
