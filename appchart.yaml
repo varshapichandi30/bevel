@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: manufacturer-peer0
-  namespace: manufacturer-net
+  namespace: argocd
 spec:
   project: default
   source:
@@ -10,7 +10,7 @@ spec:
     path: platforms/hyperledger-fabric/charts/peernode
     targetRevision: HEAD
     helm:
-      releaseName: manufacturer-peer0
+      #releaseName: manufacturer-peer0
       values: |-
           metadata:
             namespace: manufacturer-net
