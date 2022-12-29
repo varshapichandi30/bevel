@@ -4,7 +4,6 @@ metadata:
   name: supplychain-cacerts-job
   namespace: supplychain-net
 spec:
-  interval: 1m
   project: default
   source:
     repoURL: https://github.com/Karthikey22/bevel.git
