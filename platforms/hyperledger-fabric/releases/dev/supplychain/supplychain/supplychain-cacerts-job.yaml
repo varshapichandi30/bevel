@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: supplychain-cacerts-job
-  namespace: argocd
+  namespace: supplychain-net
 spec:
   project: supplychain-net 
   source:
