@@ -36,6 +36,8 @@ spec:
     server: "https://kubernetes.default.svc"
     namespace: supplychain-net
   syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
     automated:
       prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
       selfHeal: true
