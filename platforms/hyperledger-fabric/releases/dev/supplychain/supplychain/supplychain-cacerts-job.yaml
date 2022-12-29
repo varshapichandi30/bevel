@@ -32,3 +32,11 @@ spec:
         
         ca:
         subject: /C=GB/ST=London/L=London/O=Orderer/CN=ca.supplychain-net
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: supplychain-net
+  syncPolicy:
+    automated:
+      prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
+      selfHeal: true
