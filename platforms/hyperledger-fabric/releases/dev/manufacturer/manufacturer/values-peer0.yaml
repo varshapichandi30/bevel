@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: manufacturer-peer0
-  namespace: argocd
+  namespace: manufacturer-net
 spec:
   project: default
   source:
@@ -73,7 +73,7 @@ spec:
                   cpu: 0.5
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: argocd
+    namespace: manufacturer-net
   syncPolicy:
     automated:
       # Do not enable pruning yet!
