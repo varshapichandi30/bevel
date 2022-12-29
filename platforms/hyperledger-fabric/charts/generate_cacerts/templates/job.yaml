@@ -35,7 +35,7 @@ spec:
           medium: Memory
       initContainers:
         - name: init-check-certificates
-          image: {{ .Values.metadata.images.alpineutils }} #removed $symbol
+          image: {{ $.Values.metadata.images.alpineutils }} 
           imagePullPolicy: IfNotPresent
           env:
           - name: VAULT_ADDR
