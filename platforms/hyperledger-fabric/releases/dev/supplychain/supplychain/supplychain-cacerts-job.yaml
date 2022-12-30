@@ -4,7 +4,7 @@ metadata:
   name: supplychain-cacerts-job
   namespace: argocd
 spec:
-  project: supplychain-net 
+  project: default
   source:
     repoURL: https://github.com/Karthikey22/bevel.git
     path: platforms/hyperledger-fabric/charts/generate_cacerts
