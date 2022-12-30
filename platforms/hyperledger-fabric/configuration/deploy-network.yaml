@@ -19,63 +19,63 @@
   no_log: "{{ no_ansible_log | default(false) }}"
   tasks:
   
-    # # delete build directory
-    # - name: Remove build directory
-    #   file:
-    #     path: "./build"
-    #     state: absent
+    # delete build directory
+    - name: Remove build directory
+      file:
+        path: "./build"
+        state: absent
 
-    # # Create Namespaces and Vault-rbac kubernetes-value files
-    # - name: Create namespace and Vault auth for each organization
-    #   include_role:
-    #     name: "create/namespace_vaultauth"
-    #   vars:
-    #     component_name: "{{ item.name | lower }}-net"
-    #     component_type_name: "{{ item.type | lower }}"
-    #     kubernetes: "{{ item.k8s }}"
-    #     release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
-    #   loop: "{{ network['organizations'] }}"
-    
-    # #Setup Vault-Kubernetes accesses and Regcred for docker registry
-    # - name: Setup Vault Kubernetes for each organization
-    #   include_role: 
-    #     name: "setup/vault_kubernetes"
-    #   vars:
-    #     component_name: "{{ item.name | lower }}-net"
-    #     kubernetes: "{{ item.k8s }}"
-    #     vault: "{{ item.vault }}"
-    #     component_type: "{{ item.type | lower }}"
-    #     auth_path: "{{ network.env.type }}{{ item.name | lower }}-net-auth"
-    #   loop: "{{ network['organizations'] }}"
-
-    # # Create Storageclass 
-    # - name: Create storageclass for each organization
-    #   include_role:
-    #     name: "create/storageclass"
-    #   vars:
-    #     sc_name: "{{ item.name | lower}}sc"
-    #     component_type: "{{ item.type | lower}}"
-    #     kubernetes: "{{ item.k8s }}"
-    #     release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
-    #   loop: "{{ network['organizations'] }}"
-        
-    # Create CA Server helm-value files and check-in
-    - name: Create CA server for each organization
+    # Create Namespaces and Vault-rbac kubernetes-value files
+    - name: Create namespace and Vault auth for each organization
       include_role:
-        name: "create/ca-server"
+        name: "create/namespace_vaultauth"
       vars:
-        component_name: "{{ item.name | lower}}-net"
-        component: "{{ item.name | lower}}"
-        component_type: "{{ item.type | lower}}"
-        component_services: "{{ item.services }}"
+        component_name: "{{ item.name | lower }}-net"
+        component_type_name: "{{ item.type | lower }}"
+        kubernetes: "{{ item.k8s }}"
+        release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+      loop: "{{ network['organizations'] }}"
+    
+    #Setup Vault-Kubernetes accesses and Regcred for docker registry
+    - name: Setup Vault Kubernetes for each organization
+      include_role: 
+        name: "setup/vault_kubernetes"
+      vars:
+        component_name: "{{ item.name | lower }}-net"
         kubernetes: "{{ item.k8s }}"
         vault: "{{ item.vault }}"
-        ca: "{{ item.services.ca }}"
-        docker_url: "{{ network.docker.url }}"
-        gitops: "{{ item.gitops }}"
-        values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+        component_type: "{{ item.type | lower }}"
+        auth_path: "{{ network.env.type }}{{ item.name | lower }}-net-auth"
       loop: "{{ network['organizations'] }}"
-      when: item.services.ca is defined
+
+    # Create Storageclass 
+    - name: Create storageclass for each organization
+      include_role:
+        name: "create/storageclass"
+      vars:
+        sc_name: "{{ item.name | lower}}sc"
+        component_type: "{{ item.type | lower}}"
+        kubernetes: "{{ item.k8s }}"
+        release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+      loop: "{{ network['organizations'] }}"
+        
+    # # Create CA Server helm-value files and check-in
+    # - name: Create CA server for each organization
+    #   include_role:
+    #     name: "create/ca-server"
+    #   vars:
+    #     component_name: "{{ item.name | lower}}-net"
+    #     component: "{{ item.name | lower}}"
+    #     component_type: "{{ item.type | lower}}"
+    #     component_services: "{{ item.services }}"
+    #     kubernetes: "{{ item.k8s }}"
+    #     vault: "{{ item.vault }}"
+    #     ca: "{{ item.services.ca }}"
+    #     docker_url: "{{ network.docker.url }}"
+    #     gitops: "{{ item.gitops }}"
+    #     values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+    #   loop: "{{ network['organizations'] }}"
+    #   when: item.services.ca is defined
         
     # # Create generate_crypto script for each organization
     # - name: Create generate_crypto.sh for each organization
