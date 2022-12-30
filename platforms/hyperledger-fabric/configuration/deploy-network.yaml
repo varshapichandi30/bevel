@@ -59,7 +59,7 @@
     #     release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
     #   loop: "{{ network['organizations'] }}"
         
-    # # Create CA Server helm-value files and check-in
+    # Create CA Server helm-value files and check-in
     - name: Create CA server for each organization
       include_role:
         name: "create/ca-server"
