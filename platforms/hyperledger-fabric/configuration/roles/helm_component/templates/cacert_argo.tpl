@@ -2,9 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ name }}-cacerts-job
-  namespace: {{ component_ns }}
+  namespace: argocd
 spec:
-  project: {{ component_ns }} 
+  project: default
   source:
     repoURL: https://github.com/Karthikey22/bevel.git
     path: {{ charts_dir }}/generate_cacerts
@@ -17,8 +17,8 @@ spec:
             component_name: {{ component }}-net
             namespace: {{ component_ns }}    
             images:
-            fabrictools: {{ fabrictools_image }}
-            alpineutils: {{ alpine_image }}
+              fabrictools: {{ fabrictools_image }}
+              alpineutils: {{ alpine_image }}
 
           vault:
             role: vault-role

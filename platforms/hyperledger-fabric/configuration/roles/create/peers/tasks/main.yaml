@@ -61,7 +61,7 @@
 
 - name: Creating application for relases folder
   shell: |
-    kubectl apply -n manufacturer-net -f /home/bevel/platforms/hyperledger-fabric/releases/dev/manufacturer/manufacturer/values-peer0.yaml
+    kubectl apply -f /home/bevel/platforms/hyperledger-fabric/releases/dev/manufacturer/manufacturer/values-peer0.yaml
   
 # Wait for the Orderer Application
 - name: 'Wait for {{ peer.name }} Application in {{ namespace }}'

@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ name }}-{{ peer_name }}
-  namespace: {{ peer_ns }}
+  namespace: argocd
 spec:
   project: default
   source:
@@ -15,7 +15,7 @@ spec:
           metadata:
             namespace: {{ peer_ns }}
             images:
-              couchdb: {{ couchdb_image }}
+              couchdb: hyperledger/fabric-couchdb:0.4.22 #prev {{ couchdb_image}}
               peer: {{ peer_image }}
               alpineutils: {{ alpine_image }}
       {% if network.env.annotations is defined %}

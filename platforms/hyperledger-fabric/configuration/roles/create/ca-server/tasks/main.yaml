@@ -52,7 +52,7 @@
   
 - name: Argocd app creation for ca server
   shell: |
-      kubectl apply -n supplychain-net -f /home/bevel/platforms/hyperledger-fabric/releases/dev/supplychain/supplychain/supplychain-cacerts-job.yaml
+      kubectl apply -f /home/bevel/platforms/hyperledger-fabric/releases/dev/supplychain/supplychain/supplychain-cacerts-job.yaml
 
 # Check if cacerts-job is completed
 - name: Check if cacerts-job job is completed
