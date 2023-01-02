@@ -11,7 +11,7 @@ spec:
     targetRevision: HEAD
     helm:
       releaseName:  peer0-manufacturer-cli
-      values:
+      values: |-
         metadata:
           namespace: manufacturer-net
           images:
