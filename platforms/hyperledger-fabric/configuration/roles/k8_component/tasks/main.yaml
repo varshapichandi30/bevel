@@ -15,6 +15,7 @@
   file:
     path: "{{ release_dir }}/{{ component_type_name }}"
     state: directory
+  
 
 ############################################################################################
 # This task creates the value file for the k8 components
