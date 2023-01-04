@@ -18,7 +18,7 @@ metadata:
     {{- end }}
     {{- end }}
     {{- end }} 
-    {{- if eq $.Values.proxy.provider "ambassador" }}  
+    {{- if eq $.Values.proxy.provider $.Values.proxy.provider }}  
     getambassador.io/config: |
       ---
       apiVersion: ambassador/v2
@@ -73,7 +73,7 @@ spec:
     targetPort: 9443
     port: 9443
 
-{{- if eq $.Values.proxy.provider "haproxy" }}
+{{- if eq $.Values.proxy.provider $.Values.proxy.provider }}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
