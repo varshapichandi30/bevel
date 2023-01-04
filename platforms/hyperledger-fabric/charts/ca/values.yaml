@@ -100,7 +100,7 @@ annotations:
 proxy:
   #This will be the proxy/ingress provider. Can have values "ambassador" or "haproxy"
   #Eg. provider: "haproxy"
-  provider: none
+  provider: "ambassador"
   #Type can be "orderer" or "peer"; "test" is defaulted
   #Eg. type: orderer
   type: orderer
