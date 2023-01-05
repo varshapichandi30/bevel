@@ -59,8 +59,18 @@
   tags:
     - notest
 
+# - name: Argo app deployment for carrier peer
+#   shell: |
+#     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/carrier/carrier/values-peer0.yaml
+#   when: namespace == 'carrier-net'
+
+# - name: Argo app deployment for manufacturer peer
+#   shell: |
+#     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/manufacturer/manufacturer/values-peer0.yaml
+#   when: namespace == 'manufacturer-net'
+
 # Wait for the Orderer HelmRelease
-- name: 'Wait for {{ peer.name }} HelmRelease in {{ namespace }}'
+- name: 'Wait for {{ peer.name }} Application in {{ namespace }}'
   k8s_info:
     api_version: "helm.toolkit.fluxcd.io/v2beta1"
     kind: "HelmRelease"

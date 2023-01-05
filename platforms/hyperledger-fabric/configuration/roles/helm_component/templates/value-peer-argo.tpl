@@ -15,7 +15,7 @@ spec:
           metadata:
             namespace: {{ peer_ns }}
             images:
-              couchdb: hyperledger/fabric-couchdb:0.4.22 #prev {{ couchdb_image}}
+              couchdb: {{ couchdb_image}} #prev {{ couchdb_image}}
               peer: {{ peer_image }}
               alpineutils: {{ alpine_image }}
       {% if network.env.annotations is defined %}

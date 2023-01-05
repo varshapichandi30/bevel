@@ -49,7 +49,22 @@
     msg: "[ci skip] Pushing CA server files"
   tags:
     - notest
+# # applying argo app to cluster
 
+# - name: Argo app deployment for supplychain
+#   shell: |
+#     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/supplychain/supplychain/supplychain-cacerts-job.yaml
+#   when: component == 'supplychain'
+
+# - name: Argo app deployment for manufacturer
+#   shell: |
+#     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/manufacturer/manufacturer/manufacturer-cacerts-job.yaml
+#   when: component == 'manufacturer'
+
+# - name: Argo app deployment for carrier
+#   shell: |
+#     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/carrier/carrier/carrier-cacerts-job.yaml
+#   when: component == 'carrier'
 # Check if cacerts-job is completed
 - name: Check if cacerts-job job is completed
   include_role:
@@ -68,7 +83,7 @@
     cp {{ ca.configpath }} ../../../{{ gitops.chart_source }}/ca/conf/fabric-ca-server-config-{{ component }}.yaml
   when: ca.configpath is defined
 
-#####################################################################################################################
+####################################################################################################################
 # This task creates the Ambassador TLS credentials
 - name: "Create the Ambassador credentials"
   include_role:
@@ -79,9 +94,9 @@
     kubernetes: "{{ item.k8s }}"
     check: "ambassador_creds"
   when: 
-    - network.env.proxy == 'ambassador'
+    - network.env.proxy == "ambassador"
 
-# ############################################################################################
+############################################################################################
 # This task creates the CA value file for Orderer
 - name: "Create CA server values for Orderer"
   include_role:
@@ -126,3 +141,18 @@
     msg: "[ci skip] Pushing CA server files"
   tags:
     - notest
+
+# - name: Argo app deployment for supplychain
+#   shell: |
+#     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/supplychain/ca/supplychain-net.yaml
+#   when: component == 'supplychain'
+
+# - name: Argo app deployment for manufacturer
+#   shell: |
+#     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/manufacturer/ca/manufacturer-net.yaml
+#   when: component == 'manufacturer'
+
+# - name: Argo app deployment for carrier
+#   shell: |
+#     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/carrier/ca/carrier-net.yaml
+#   when: component == 'carrier'
