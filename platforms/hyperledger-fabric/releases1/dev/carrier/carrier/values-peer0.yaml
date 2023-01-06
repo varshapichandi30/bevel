@@ -29,7 +29,6 @@ spec:
             builder: hyperledger/fabric-ccenv:1.4.8
             couchdb:
               username: carrier-user
-
           storage:
             peer:
               storageclassname: carriersc
@@ -37,7 +36,6 @@ spec:
             couchdb:
               storageclassname: carriersc
               storagesize: 1Gi
-
           vault:
             role: vault-role
             address: http://52.229.229.54:8200
@@ -47,7 +45,6 @@ spec:
             serviceaccountname: vault-auth
             imagesecretname: regcred
             secretcouchdbpass: secretsv2/data/credentials/carrier-net/couchdb/carrier?user
-
           service:
             servicetype: ClusterIP
             ports:
@@ -61,7 +58,6 @@ spec:
           proxy:
             provider: "none"
             external_url_suffix: upgrade.upgrade.com
-
           config:
             pod:
               resources:
