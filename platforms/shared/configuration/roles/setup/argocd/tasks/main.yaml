@@ -13,4 +13,15 @@
     kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
     argocd login --core
     kubectl config set-context --current --namespace=argocd 
+
+- name: Creating main application
+  shell: |
+      argocd app create mainapp \
+      --repo https://github.com/Karthikey22/bevel.git \
+      --path platforms/hyperledger-fabric/releases1/dev/ \
+      --revision upgrade \
+      --sync-policy=automated \
+      --directory-recurse=true \
+      --dest-server https://kubernetes.default.svc \
+      --dest-namespace argocd
     
