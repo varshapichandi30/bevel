@@ -38,7 +38,7 @@
   shell: |
     CA_TOOL_CLI=$(KUBECONFIG={{ kubernetes.config_file }} kubectl get po -n {{ component_name }} | grep "ca-tools" | awk '{print $1}')
     export CA_TOOL_CLI
-    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/generate-user-crypto.sh {{ component_name }}/${CA_TOOL_CLI}:/root/ca-tools/{{org_name|lower}}/generate-user-crypto.sh
+    KUBECONFIG={{ kubernetes.config_file }} kubectl cp /home/bevel/platforms/hyperledger-fabric/configuration/build/generate-user-crypto.sh {{ component_name }}/${CA_TOOL_CLI}:/root/ca-tools/{{org_name|lower}}/generate-user-crypto.sh
 
 ############################################################################################
 # This task executes generate-user-crypto.sh file using the CA Tools to generate user certificate 
