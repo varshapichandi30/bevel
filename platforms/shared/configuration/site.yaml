@@ -19,7 +19,7 @@
   - import_playbook: "{{ playbook_dir }}/../../hyperledger-fabric/configuration/deploy-network.yaml"
     vars:
       add_new_org: 'false'
-#     when: network.type == 'fabric' and (reset is undefined or reset == 'false') and ( network.upgrade  is not defined)
+    when: network.type == 'fabric' and (reset is undefined or reset == 'false') and ( network.upgrade  is not defined)
 # #   - import_playbook: "{{ playbook_dir }}/../../hyperledger-fabric/configuration/chaincode-ops.yaml"
 # #     vars:
 # #       add_new_org: 'false'
