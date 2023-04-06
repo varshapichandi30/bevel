@@ -16,10 +16,10 @@
   - import_playbook: environment-setup.yaml   # First setup environment for each organization
   - import_playbook: kubernetes-env-setup.yaml # Then deploy Flux for each organization
     when: reset is undefined or reset == 'false'
-  - import_playbook: "{{ playbook_dir }}/../../hyperledger-fabric/configuration/deploy-network.yaml"
-    vars:
-      add_new_org: 'false'
-    when: network.type == 'fabric' and (reset is undefined or reset == 'false') and ( network.upgrade  is not defined)
+  # - import_playbook: "{{ playbook_dir }}/../../hyperledger-fabric/configuration/deploy-network.yaml"
+  #   vars:
+  #     add_new_org: 'false'
+  #   when: network.type == 'fabric' and (reset is undefined or reset == 'false') and ( network.upgrade  is not defined)
 # #   - import_playbook: "{{ playbook_dir }}/../../hyperledger-fabric/configuration/chaincode-ops.yaml"
 # #     vars:
 # #       add_new_org: 'false'
@@ -46,8 +46,8 @@
 # # Reseting the network
 #   - import_playbook: "{{ playbook_dir }}/../../r3-corda/configuration/reset-network.yaml"
 #     when: network.type == 'corda' and reset is defined and reset == 'true'
-  - import_playbook: "{{ playbook_dir }}/../../hyperledger-fabric/configuration/reset-network.yaml"
-    when: network.type == 'fabric' and reset is defined and reset == 'true'
+  # - import_playbook: "{{ playbook_dir }}/../../hyperledger-fabric/configuration/reset-network.yaml"
+  #   when: network.type == 'fabric' and reset is defined and reset == 'true'
 #   - import_playbook: "{{ playbook_dir }}/../../hyperledger-indy/configuration/cleanup.yaml"
 #     when: network.type == 'indy' and reset is defined and reset == 'true'
 #   - import_playbook: "{{ playbook_dir }}/../../quorum/configuration/reset-network.yaml"
