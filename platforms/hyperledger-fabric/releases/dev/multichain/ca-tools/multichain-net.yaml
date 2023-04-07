@@ -1,0 +1,70 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: multichain-net-ca-tools
+  namespace: multichain-net
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  interval: 1m
+  releaseName: multichain-net-ca-tools
+  chart:
+    spec:
+      interval: 1m
+      sourceRef:
+        kind: GitRepository
+        name: flux-local
+        namespace: flux-local
+      chart: platforms/hyperledger-fabric/charts/catools
+  values:
+    metadata:
+      namespace: multichain-net
+      name: ca-tools
+      component_type: orderer
+      org_name: multichain
+      proxy: none
+    replicaCount: 1
+
+    image:
+      repository: hyperledger/fabric-ca-tools
+      tag: 1.2.1
+      pullPolicy: IfNotPresent
+      alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+      
+    storage:
+      storageclassname: multichainsc
+      storagesize: 512Mi
+    
+    vault:
+      role: vault-role
+      address: http://20.244.7.50:8200
+      authpath: localmultichain-net-auth
+      secretmsp: secretsv2/data/crypto/ordererOrganizations/multichain-net/users/admin/msp
+      secrettls: secretsv2/data/crypto/ordererOrganizations/multichain-net/users/admin/tls
+      secretorderer: secretsv2/data/crypto/ordererOrganizations/multichain-net/orderers
+      secretpeer: secretsv2/data/crypto/ordererOrganizations/multichain-net/peers
+      secretpeerorderertls: secretsv2/data/crypto/ordererOrganizations/multichain-net/orderer/tls
+      secretambassador: secretsv2/data/crypto/ordererOrganizations/multichain-net/ambassador
+      secretcert: secretsv2/data/crypto/ordererOrganizations/multichain-net/ca?ca.multichain-net-cert.pem
+      secretkey: secretsv2/data/crypto/ordererOrganizations/multichain-net/ca?multichain-net-CA.key
+      secretcouchdb: secretsv2/data/credentials/multichain-net/couchdb/multichain
+      secretconfigfile: secretsv2/data/crypto/ordererOrganizations/multichain-net/msp/config
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+    
+    healthcheck: 
+      retries: 10
+      sleepTimeAfterError: 2
+
+    
+    org_data:
+      external_url_suffix: upgrade.upgrade.com
+      component_subject: O=Orderer,L=51.50/-0.13/London,C=GB
+      cert_subject: O=Orderer/L=51.50,-0.13,London/C=GB
+      component_country: UK
+      component_state: London
+      component_location: London
+      ca_url: ca.multichain-net:7054
+
+    orderers:
+      name: orderer1-
