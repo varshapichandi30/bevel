@@ -25,83 +25,83 @@
     #     path: "./build"
     #     state: absent
         
-    # Create Namespaces and Vault-rbac kubernetes-value files for new organization
-    - name: "Create Namespace and serviceaccount for new org"
-      include_role:
-        name: "create/namespace_vaultauth"
-      vars:
-        component_name: "{{ item.name | lower }}-net"
-        component_type_name: "{{ item.type | lower }}"
-        kubernetes: "{{ item.k8s }}"
-        release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
-      loop: "{{ network['organizations'] }}"
-      when: item.org_status == 'new'
+    # # Create Namespaces and Vault-rbac kubernetes-value files for new organization
+    # - name: "Create Namespace and serviceaccount for new org"
+    #   include_role:
+    #     name: "create/namespace_vaultauth"
+    #   vars:
+    #     component_name: "{{ item.name | lower }}-net"
+    #     component_type_name: "{{ item.type | lower }}"
+    #     kubernetes: "{{ item.k8s }}"
+    #     release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+    #   loop: "{{ network['organizations'] }}"
+    #   when: item.org_status == 'new'
     
-    #Setup Vault-Kubernetes accesses and Regcred for docker registry for new organization
-    - name: "Create vault-auth for new org"
-      include_role: 
-        name: "setup/vault_kubernetes"
-      vars:
-        component_name: "{{ item.name | lower }}-net"
-        kubernetes: "{{ item.k8s }}"
-        vault: "{{ item.vault }}"
-        component_type: "{{ item.type | lower }}"
-        auth_path: "{{ network.env.type }}{{ item.name | lower }}-net-auth"
-      loop: "{{ network['organizations'] }}"
-      when: item.org_status == 'new'
+    # #Setup Vault-Kubernetes accesses and Regcred for docker registry for new organization
+    # - name: "Create vault-auth for new org"
+    #   include_role: 
+    #     name: "setup/vault_kubernetes"
+    #   vars:
+    #     component_name: "{{ item.name | lower }}-net"
+    #     kubernetes: "{{ item.k8s }}"
+    #     vault: "{{ item.vault }}"
+    #     component_type: "{{ item.type | lower }}"
+    #     auth_path: "{{ network.env.type }}{{ item.name | lower }}-net-auth"
+    #   loop: "{{ network['organizations'] }}"
+    #   when: item.org_status == 'new'
 
-    # Create Storageclass for new organization
-    - name: "Create storageclass for new org"
-      include_role:
-        name: "create/storageclass"
-      vars:
-        sc_name: "{{ item.name | lower}}sc"
-        component_type: "{{ item.type | lower}}"
-        kubernetes: "{{ item.k8s }}"
-        release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
-      loop: "{{ network['organizations'] }}"
-      when: item.org_status == 'new'
+    # # Create Storageclass for new organization
+    # - name: "Create storageclass for new org"
+    #   include_role:
+    #     name: "create/storageclass"
+    #   vars:
+    #     sc_name: "{{ item.name | lower}}sc"
+    #     component_type: "{{ item.type | lower}}"
+    #     kubernetes: "{{ item.k8s }}"
+    #     release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+    #   loop: "{{ network['organizations'] }}"
+    #   when: item.org_status == 'new'
         
-    # Create CA Server value files and check-in for new organization
-    - name: "Create CA Server for new org"
-      include_role:
-        name: "create/ca-server"
-      vars:
-        component_name: "{{ item.name | lower}}-net"
-        component: "{{ item.name | lower}}"
-        component_type: "{{ item.type | lower}}"
-        component_services: "{{ item.services }}"
-        kubernetes: "{{ item.k8s }}"
-        vault: "{{ item.vault }}"
-        ca: "{{ item.services.ca }}"
-        docker_url: "{{ network.docker.url }}"
-        gitops: "{{ item.gitops }}"
-        values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
-      loop: "{{ network['organizations'] }}"
-      when: item.org_status == 'new' and item.services.ca is defined
+    # # Create CA Server value files and check-in for new organization
+    # - name: "Create CA Server for new org"
+    #   include_role:
+    #     name: "create/ca-server"
+    #   vars:
+    #     component_name: "{{ item.name | lower}}-net"
+    #     component: "{{ item.name | lower}}"
+    #     component_type: "{{ item.type | lower}}"
+    #     component_services: "{{ item.services }}"
+    #     kubernetes: "{{ item.k8s }}"
+    #     vault: "{{ item.vault }}"
+    #     ca: "{{ item.services.ca }}"
+    #     docker_url: "{{ network.docker.url }}"
+    #     gitops: "{{ item.gitops }}"
+    #     values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+    #   loop: "{{ network['organizations'] }}"
+    #   when: item.org_status == 'new' and item.services.ca is defined
   
-    #Creating a pause so that the client certificates are valid
-    # You can continue if the CA-server pods are running for more than 5 minutes
-    - pause:
-        prompt: "Sleeping... so that the client certificates are valid"
-        minutes: 6
+    # #Creating a pause so that the client certificates are valid
+    # # You can continue if the CA-server pods are running for more than 5 minutes
+    # - pause:
+    #     prompt: "Sleeping... so that the client certificates are valid"
+    #     minutes: 6
 
-    # Create CA Tools helm-value files and check-in
-    - name: Create CA tools for each organization
-      include_role:
-        name: "create/ca-tools/orderer"
-      vars:
-        component_name: "{{ item.name | lower}}-net"
-        component: "{{ item.name | lower}}"
-        component_type: "{{ item.type | lower}}"
-        component_services: "{{ item.services }}"
-        kubernetes: "{{ item.k8s }}"
-        vault: "{{ item.vault }}"
-        ca: "{{ item.services.ca }}"
-        gitops: "{{ item.gitops }}"
-        values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
-      loop: "{{ network['organizations'] }}"
-      when: item.type == 'orderer'
+    # # Create CA Tools helm-value files and check-in
+    # - name: Create CA tools for each organization
+    #   include_role:
+    #     name: "create/ca-tools/orderer"
+    #   vars:
+    #     component_name: "{{ item.name | lower}}-net"
+    #     component: "{{ item.name | lower}}"
+    #     component_type: "{{ item.type | lower}}"
+    #     component_services: "{{ item.services }}"
+    #     kubernetes: "{{ item.k8s }}"
+    #     vault: "{{ item.vault }}"
+    #     ca: "{{ item.services.ca }}"
+    #     gitops: "{{ item.gitops }}"
+    #     values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+    #   loop: "{{ network['organizations'] }}"
+    #   when: item.type == 'orderer'
 
     # # Creating channel artifacts and putting them in vault
     # # This role creates configtx.yaml file as the requirements mentioned in network.yaml
@@ -140,24 +140,24 @@
     #     loop_var: neworg
     #   when: neworg.type == 'orderer' and neworg.org_status == 'new'
 
-    # # This role creates value file for zk-kafka (if kafka consensus is chosen) and orderer
-    # - name: Create all orderers
-    #   include_role:
-    #     name: "create/orderers"
-    #   vars:
-    #     build_path: "./build"
-    #     namespace: "{{ item.name | lower}}-net"
-    #     component_type: "{{ item.type | lower}}"
-    #     component_services: "{{ item.services }}"
-    #     vault: "{{ item.vault }}"
-    #     git_protocol: "{{ item.gitops.git_protocol }}"
-    #     git_url: "{{ item.gitops.git_url }}"
-    #     git_branch: "{{ item.gitops.branch }}"
-    #     docker_url: "{{ network.docker.url }}"
-    #     charts_dir: "{{ item.gitops.chart_source }}"
-    #     values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
-    #   loop: "{{ network['organizations'] }}"
-    #   when: item.type == 'orderer' and item.org_status == 'new' 
+    # This role creates value file for zk-kafka (if kafka consensus is chosen) and orderer
+    - name: Create all orderers
+      include_role:
+        name: "create/orderers"
+      vars:
+        build_path: "./build"
+        namespace: "{{ item.name | lower}}-net"
+        component_type: "{{ item.type | lower}}"
+        component_services: "{{ item.services }}"
+        vault: "{{ item.vault }}"
+        git_protocol: "{{ item.gitops.git_protocol }}"
+        git_url: "{{ item.gitops.git_url }}"
+        git_branch: "{{ item.gitops.branch }}"
+        docker_url: "{{ network.docker.url }}"
+        charts_dir: "{{ item.gitops.chart_source }}"
+        values_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
+      loop: "{{ network['organizations'] }}"
+      when: item.type == 'orderer' and item.org_status == 'new' 
 
     # # Generate script to modify the fetched configuration block
     # - name: "Modify the system channel with endpoint information of new orderers"

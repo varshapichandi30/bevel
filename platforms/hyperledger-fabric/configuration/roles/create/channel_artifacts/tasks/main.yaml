@@ -8,10 +8,10 @@
 # This task ensures that the directory exists, and creates it, if it does not exist
 ############################################################################################
 # This task creates the build directory if it does not exist
-- name: Create build directory if it does not exist
-  file:
-    path: "./build"
-    state: directory
+# - name: Create build directory if it does not exist
+#   file:
+#     path: "./build"
+#     state: directory
 
 - name: check configtxgen
   stat:
@@ -152,9 +152,9 @@
   shell: |
     cd {{ build_path }}
     export FABRIC_CFG_PATH=$PWD
-    ./configtxgen -printOrg {{ participant.name }}MSP > ./channel-artifacts/{{ channel_name | lower }}.json
-  loop: "{{ item.participants }}"
+    ./configtxgen -printOrg {{ org.name }}MSP > ./channel-artifacts/{{ channel_name | lower }}.json
+  loop: "{{ network['organizations'] }}"
   loop_control:
-    loop_var: participant
+    loop_var: org
   register: result
-  when: participant.org_status == 'new' and add_new_org == 'true'
+  when: org.org_status == 'new' and add_new_org == 'true'

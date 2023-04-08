@@ -73,7 +73,7 @@
     cat {{ build_path }}/{{ channel_name }}_config_block.pb | base64 > {{ build_path }}/channel-artifacts/genesis.block.base64
   environment:
     ORDERER_CA: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/orderer/tls/ca.crt"
-    ORDERER_URL: "{{ orderer.name | lower }}.{{ org.external_url_suffix }}:8443"
+    ORDERER_URL: "{{ orderer.name | lower }}.{{ component_ns }}:7050"
   vars: 
     kubernetes: "{{ org.k8s }}"    
 
