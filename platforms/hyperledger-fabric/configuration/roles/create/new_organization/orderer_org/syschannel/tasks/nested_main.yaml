@@ -52,7 +52,7 @@
 # Create syschannel-orderer for adding new endpoint information
 - name: "Adding new endpoint information"
   shell: |
-    if [ {{ network.env.proxy }} == 'none' ]
+    if [ {{ network.env.proxy }} = 'none' ]
     then
       echo -n '"{{ orderer.name }}.{{ component_ns }}:{{ orderer.grpc.port }}"' >> {{ build_path }}/channel-artifacts/{{ channel_name }}-consenter
     else

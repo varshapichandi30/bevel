@@ -28,6 +28,6 @@ configtxlator proto_decode --input {{ channel_name }}_update.pb --type common.Co
 echo "wrapping the headers arround the channel_update.json file and create channel_update_in_envelope.json"
 echo '{"payload":{"header":{"channel_header":{"channel_id":"{{ channel_name }}", "type":2}},"data":{"config_update":'$(cat {{ channel_name }}_update.json)'}}}' | jq . > {{ channel_name }}_update_in_envelope.json
 echo "converting the channel_update_in_envelope.json to channel_update_in_envelope.pb"
-configtxlator proto_encode --input {{ channel_name }}_update_in_envelope.json --type common.Envelope --output {{ channel_name }}_update_in_envelope.pb
+configtxlator proto_encode --input {{ channel_name }}_update_in_envelope.json --type common.Envelope --output {{ channel_name }}_diff_config_envelope.pb 
 mv {{ channel_name }}_config_block.pb {{ channel_name }}_config_block_old.pb
 cd ${CURRENT_DIR}

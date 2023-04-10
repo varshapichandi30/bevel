@@ -41,7 +41,7 @@
 # Create orderer-tls for tls certificate information
 - name: "adding tls certificate information"
   shell: |
-    if [ {{ network.env.proxy }} == 'none' ]
+    if [ {{ network.env.proxy }} = 'none' ]
     then
       echo -n "{\"client_tls_cert\":\"$(cat {{ build_path }}/crypto-config/ordererOrganizations/{{ component_ns }}/orderers/{{ orderer.name|lower }}.{{ component_ns }}/tls/server.crt | base64 -w 0)\",\"host\":\"{{ orderer.name|lower }}.{{ component_ns }}\",\"port\":{{ orderer.grpc.port }},\"server_tls_cert\":\"$(cat {{ build_path }}/crypto-config/ordererOrganizations/{{ component_ns }}/orderers/{{ orderer.name|lower }}.{{ component_ns }}/tls/server.crt | base64 -w 0)\"}"  >> {{ build_path }}/channel-artifacts/{{ channel_name }}-orderer-tls 
     else
@@ -51,7 +51,7 @@
 # Create orderer file for adding new endpoint information
 - name: "adding new endpoint information"
   shell: |
-    if [ {{ network.env.proxy }} == 'none' ]
+    if [ {{ network.env.proxy }} = 'none' ]
     then
       echo -n '"{{ orderer.name }}.{{ component_ns }}:{{ orderer.grpc.port }}"' >> {{ build_path }}/channel-artifacts/{{ channel_name }}-orderer
     else
@@ -103,7 +103,7 @@
   loop: "{{ network.organizations }}"
   loop_control:
     loop_var: org
-  when: org.type == 'orderer'
+  when: org.type == 'orderer' and org.org_status == 'existing'
  
 # This task updates the block to the channel
 - name: Call update_block.yaml to add the new orderer to the existing network
