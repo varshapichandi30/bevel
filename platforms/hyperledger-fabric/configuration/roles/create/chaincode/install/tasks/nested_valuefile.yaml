@@ -36,4 +36,3 @@
   loop: "{{ peer_chaincodes }}"
   loop_control:
     loop_var: chaincode
-  when: chaincode.name in channel.chaincodes
