@@ -21,7 +21,7 @@ spec:
       namespace: supplychain-net
       images:
         couchdb: couchdb:3.1.1
-        console: "ghcr.io/hyperledgerlabs/fabric-console:latest"
+        console: "ghcr.io/hyperledger-labs/fabric-console:latest"
         configtxlator: hyperledger/fabric-tools:1.4.8
     storage:
       couchdb:
