@@ -40,4 +40,4 @@ spec:
           clusteripport: 5984
     proxy:    
       provider: "none"
-      external_url_suffix: upgrade.upgrade.com
+      external_url_suffix: manufacturer-net:7054
