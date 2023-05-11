@@ -22,7 +22,7 @@ spec:
       component_type: orderer
       namespace: supplychain-net    
       images:
-        alpineutils: index.docker.io/hyperledger-labs/alpine-utils:1.0
+        alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
 
     vault:
       reviewer_service: vault-reviewer
