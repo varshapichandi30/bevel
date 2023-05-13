@@ -84,7 +84,7 @@ spec:
         ports:
         - name: configtxlator
           containerPort: 7059
-        command: ["sh", "-c"]
+        command: ["/bin/bash", "-c"]
         args:
         - |-
           /usr/local/bin/configtxlator start --CORS=*
