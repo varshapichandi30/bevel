@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: fabconsole-pv
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: g2
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: fabconsole-db-volume
+    namespace: default
+  hostPath:
+    path: /tmp/hostpath-provisioner/default/pv
+    type: ""
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: gp2
+  volumeMode: Filesystem
+status:
+  phase: Bound

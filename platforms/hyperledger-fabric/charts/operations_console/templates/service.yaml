@@ -57,13 +57,14 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     {{- include "labels.custom" . | nindent 2 }}
 spec:
-  type: {{ $.Values.service.servicetype }}
+  type: NodePort #{{ $.Values.service.servicetype }}
   selector:
     app: {{ $.Values.service.name }}
   ports:
   - name: console
     protocol: TCP
     targetPort: 3000
+    nodePort: 30008
     port: {{ $.Values.service.ports.console.clusteripport }}
     {{- if $.Values.service.ports.console.nodeport }}
     nodePort: {{ $.Values.service.ports.console.nodeport }}
@@ -80,7 +81,7 @@ spec:
     targetPort: 7059
     port: 7059
   {{- if (eq $.Values.service.servicetype "ClusterIP") }}
-  clusterIP: None
+  #clusterIP: None
   {{- end }}
   {{- if $.Values.service.loadBalancerIP }}
   loadBalancerIP: {{ $.Values.service.loadBalancerIP }}
