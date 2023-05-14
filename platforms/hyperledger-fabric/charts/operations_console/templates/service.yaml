@@ -64,7 +64,7 @@ spec:
   - name: console
     protocol: TCP
     targetPort: 3000
-    nodePort: 30008
+    nodePort: 30088
     port: {{ $.Values.service.ports.console.clusteripport }}
     {{- if $.Values.service.ports.console.nodeport }}
     nodePort: {{ $.Values.service.ports.console.nodeport }}
