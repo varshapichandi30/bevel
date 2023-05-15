@@ -25,6 +25,6 @@ data:
     initial_admin: admin
     max_req_per_min: 100
     default_consortium: {{ $.Values.service.default_consortium }}
-    configtxlator_url_original: http://{{ $.Values.service.name }}.{{ $.Values.metadata.namespace }}:7059
-    host_url: https://{{ $.Values.service.name }}.{{ $.Values.metadata.namespace }}.{{ $.Values.proxy.external_url_suffix }}
+    configtxlator_url_original: https://localhost:7059
+    host_url: https://localhost:3000
     default_user_password_initial: password
