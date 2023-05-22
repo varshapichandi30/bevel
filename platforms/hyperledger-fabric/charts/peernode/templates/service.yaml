@@ -102,9 +102,9 @@ spec:
     protocol: TCP
     targetPort: 9443
     port: 9443
-  {{- if (eq $.Values.service.servicetype "ClusterIP") }}
-  clusterIP: None
-  {{- end }}
+  # {{- if (eq $.Values.service.servicetype "ClusterIP") }}
+  # # clusterIP: None
+  # {{- end }}
   {{- if $.Values.service.loadBalancerIP }}
   loadBalancerIP: {{ $.Values.service.loadBalancerIP }}
   {{- end }}
