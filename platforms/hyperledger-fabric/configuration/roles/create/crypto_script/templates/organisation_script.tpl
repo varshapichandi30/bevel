@@ -8,7 +8,7 @@ ALTERNATIVE_ORG_NAMES=("{{ component_ns }}.svc.cluster.local" "{{ component_name
 ORG_NAME="{{ component_name }}"
 EXTERNAL_URL_SUFFIX="{{ item.external_url_suffix }}"
 AFFILIATION="{{ component_name }}"
-SUBJECT="C={{ component_country }},ST={{ component_state }},L={{ component_location }},O={{ component_name }}"
+SUBJECT="C={{ component_country }},ST={{ component_state }},L={{ component_location }},O={{ component_name }},OU=admin"
 SUBJECT_PEER="{{ component_subject }}"
 CA="{{ ca_url }}"
 CA_ADMIN_USER="${ORG_NAME}-admin"

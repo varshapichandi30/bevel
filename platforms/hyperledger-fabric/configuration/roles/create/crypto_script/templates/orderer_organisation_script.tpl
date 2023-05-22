@@ -7,7 +7,7 @@ FULLY_QUALIFIED_ORG_NAME="{{ component_ns }}"
 EXTERNAL_URL_SUFFIX="{{ item.external_url_suffix }}"
 ALTERNATIVE_ORG_NAMES=("{{ item.external_url_suffix }}")
 ORG_NAME="{{ component_name }}"
-SUBJECT="C={{ component_country }},ST={{ component_state }},L={{ component_location }},O={{ component_name }}"
+SUBJECT="C={{ component_country }},ST={{ component_state }},L={{ component_location }},O={{ component_name }},OU=admin"
 SUBJECT_PEER="{{ component_subject }}"
 CA="{{ ca_url }}"
 CA_ADMIN_USER="${ORG_NAME}-admin"

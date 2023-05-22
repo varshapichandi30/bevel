@@ -28,6 +28,6 @@
             "organizational_unit_identifier": "peer"
         }
     },
-    "host_url": "https://{{ item.name }}console.{{ component_ns }}:3002",
+    "host_url": "http://localhost:3000",
     "name": "{{ item.name | lower }} MSP"
 }
