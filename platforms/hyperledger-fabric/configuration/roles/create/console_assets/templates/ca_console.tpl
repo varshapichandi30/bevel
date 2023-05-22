@@ -1,7 +1,7 @@
 {
     "display_name": "{{ item.type }}ca - {{ item.name | lower }}",
     "api_url": "https://{{ item.ca_data.url }}",
-    "operations_url": "https://ca-ops.{{ component_ns }}:7054",
+    "operations_url": "http://ca.{{ component_ns }}:7054",
     "ca_url": "https://{{ item.ca_data.url }}",
     "type": "fabric-ca",
     "ca_name": "ca.{{ component_ns }}",
