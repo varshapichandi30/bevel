@@ -22,7 +22,7 @@ spec:
       component_name: supplychain-net
       namespace: supplychain-net    
       images:
-        fabrictools: hyperledger/fabric-tools:2.2.9
+        fabrictools: hyperledger/fabric-tools:2.2.2
         alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
 
     vault:
