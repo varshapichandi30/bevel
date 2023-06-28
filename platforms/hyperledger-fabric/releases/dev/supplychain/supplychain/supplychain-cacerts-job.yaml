@@ -35,4 +35,4 @@ spec:
       imagesecretname: regcred
       
     ca:
-      subject: /C=GB/ST=London/L=London/O=Orderer/CN=ca.supplychain-net.bank.com
+      subject: /C=GB/ST=London/L=London/O=Orderer/CN=ca.supplychain-net
