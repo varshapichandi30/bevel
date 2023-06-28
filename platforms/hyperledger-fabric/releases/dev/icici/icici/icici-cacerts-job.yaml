@@ -35,4 +35,4 @@ spec:
       imagesecretname: regcred
       
     ca:
-      subject: /C=CH/ST=Zurich/L=Zurich/O=Icici/CN=ca.icici-net.bank.com
+      subject: /C=CH/ST=Zurich/L=Zurich/O=Icici/CN=ca.icici-net
