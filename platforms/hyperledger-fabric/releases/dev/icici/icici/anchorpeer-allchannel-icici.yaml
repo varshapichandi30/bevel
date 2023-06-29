@@ -1,0 +1,53 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: anchorpeer-allchannel-icici
+  namespace: icici-bank-com
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  interval: 1m
+  releaseName: anchorpeer-allchannel-icici
+  chart:
+    spec:
+      interval: 1m
+      sourceRef:
+        kind: GitRepository
+        name: flux-local
+        namespace: flux-local
+      chart: platforms/hyperledger-fabric/charts/anchorpeer
+  values:
+    metadata:
+      namespace: icici-bank-com
+      images:
+        fabrictools: hyperledger/fabric-tools:2.2.2
+        alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+
+    peer:
+      name: peer0
+      address: peer0.icici-bank-com:7051
+      localmspid: iciciMSP
+      loglevel: debug
+      tlsstatus: true
+
+    vault:
+      role: vault-role
+      address: http://34.229.91.35:8200
+      authpath: localicici-bank-com-auth
+      adminsecretprefix: secretsv2/data/crypto/peerOrganizations/icici-bank-com/users/admin
+      orderersecretprefix: secretsv2/data/crypto/peerOrganizations/icici-bank-com/orderer
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+
+    channel:
+      name: allchannel      
+    orderer:
+      address: orderer1.rbi-bank-com:7050
+    anchorstx: |-
+      CrcCChgKFggCGgYIg8/1pAYiCmFsbGNoYW5uZWwSmgIKlwIKCmFsbGNoYW5uZWwSYRJfCgtBcHBs
+      aWNhdGlvbhJQCAESTAoIaWNpY2lNU1ASQBoHCgNNU1ASACILCgdXcml0ZXJzEgAiCgoGQWRtaW5z
+      EgAiDwoLRW5kb3JzZW1lbnQSACILCgdSZWFkZXJzEgAapQESogEKC0FwcGxpY2F0aW9uEpIBCAES
+      jQEKCGljaWNpTVNQEoABCAEaNAoLQW5jaG9yUGVlcnMSJRIbChkKFHBlZXIwLmljaWNpLWJhbmst
+      Y29tEIs3GgZBZG1pbnMaBwoDTVNQEgAiCwoHV3JpdGVycxIAIgoKBkFkbWlucxIAIg8KC0VuZG9y
+      c2VtZW50EgAiCwoHUmVhZGVycxIAKgZBZG1pbnM=
+
