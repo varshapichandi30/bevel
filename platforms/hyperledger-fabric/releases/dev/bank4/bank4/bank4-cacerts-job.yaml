@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: bank4-cacerts-job
+  namespace: bank4-bank-com
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  interval: 1m
+  releaseName: bank4-cacerts-job
+  chart:
+    spec:
+      interval: 1m
+      sourceRef:
+        kind: GitRepository
+        name: flux-local
+        namespace: flux-local
+      chart: platforms/hyperledger-fabric/charts/generate_cacerts
+  values:
+    metadata:
+      name: bank4
+      component_name: bank4-bank-com
+      namespace: bank4-bank-com    
+      images:
+        fabrictools: hyperledger/fabric-tools:2.2.2
+        alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+
+    vault:
+      role: vault-role
+      address: http://18.234.147.72:8200
+      authpath: localbank4-bank-com-auth
+      secretcryptoprefix: secretsv2/data/crypto/peerOrganizations/bank4-bank-com/ca
+      secretcredentialsprefix: secretsv2/data/credentials/bank4-bank-com/ca/bank4
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+      
+    ca:
+      subject: /C=GB/ST=London/L=London/O=Bank4/CN=ca.bank4-bank-com
