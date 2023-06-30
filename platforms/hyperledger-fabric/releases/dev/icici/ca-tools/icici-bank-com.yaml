@@ -1,0 +1,80 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: icici-bank-com-ca-tools
+  namespace: icici-bank-com
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  interval: 1m
+  releaseName: icici-bank-com-ca-tools
+  chart:
+    spec:
+      interval: 1m
+      sourceRef:
+        kind: GitRepository
+        name: flux-local
+        namespace: flux-local
+      chart: platforms/hyperledger-fabric/charts/catools
+  values:
+    metadata:
+      namespace: icici-bank-com
+      name: ca-tools
+      component_type: peer
+      org_name: icici
+      proxy: none
+    replicaCount: 1
+
+    image:
+      repository: hyperledger/fabric-ca-tools
+      tag: 1.2.1
+      pullPolicy: IfNotPresent
+      alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+      
+    storage:
+      storageclassname: icicisc
+      storagesize: 512Mi
+    
+    vault:
+      role: vault-role
+      address: http://18.234.147.72:8200
+      authpath: localicici-bank-com-auth
+      secretmsp: secretsv2/data/crypto/peerOrganizations/icici-bank-com/users/admin/msp
+      secrettls: secretsv2/data/crypto/peerOrganizations/icici-bank-com/users/admin/tls
+      secretorderer: secretsv2/data/crypto/peerOrganizations/icici-bank-com/orderers
+      secretpeer: secretsv2/data/crypto/peerOrganizations/icici-bank-com/peers
+      secretpeerorderertls: secretsv2/data/crypto/peerOrganizations/icici-bank-com/orderer/tls
+      secretambassador: secretsv2/data/crypto/peerOrganizations/icici-bank-com/ambassador
+      secretcert: secretsv2/data/crypto/peerOrganizations/icici-bank-com/ca?ca.icici-bank-com-cert.pem
+      secretkey: secretsv2/data/crypto/peerOrganizations/icici-bank-com/ca?icici-bank-com-CA.key
+      secretcouchdb: secretsv2/data/credentials/icici-bank-com/couchdb/icici
+      secretconfigfile: secretsv2/data/crypto/peerOrganizations/icici-bank-com/msp/config
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+    
+    healthcheck: 
+      retries: 10
+      sleepTimeAfterError: 2
+
+    
+    org_data:
+      external_url_suffix: upgrade.upgrade.com
+      component_subject: O=Icici,OU=Icici,L=47.38/8.54/Zurich,C=CH
+      cert_subject: O=Icici/OU=Icici/L=47.38,8.54,Zurich/C=CH
+      component_country: CH
+      component_state: Zurich
+      component_location: Zurich
+      ca_url: ca.icici-bank-com:7054
+
+    orderers:
+      name: orderer1-
+    orderers_info:
+      - name: orderer1
+        path: "certs/orderer1-ca.crt"
+
+    peers:
+      name: peer0,-      
+    peer_count: "1"
+    checks:
+      refresh_cert_value: False
+      add_peer_value: False
