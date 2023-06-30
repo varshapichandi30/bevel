@@ -62,7 +62,7 @@ This is the nested Task for chaincode approve.
     *name: "Name of the organisation"
     type: "approve_chaincode_job"
     *component_name: Name of the component, "approve-{{ org.name | lower }}-{{ peer.name }}-{{item.channel_name|lower}}-{{ chaincode.name }}{{ chaincode.version }}"
-    *namespace: "Namespace of org , Format: {{ org.name |lower }}-net"
+    *namespace: "Namespace of org , Format: {{ org.name |lower }}"
     *peer_name: "Name of the peer"
     *peer_address: "Gossip peer Address"    
     *git_url: "Git SSH url"

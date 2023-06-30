@@ -19,7 +19,7 @@ spec:
   values:
     metadata:
       name: {{ component }}
-      component_name: {{ component }}-net
+      component_name: {{ component }}-bank-com
       namespace: {{ component_ns }}    
       images:
         fabrictools: {{ fabrictools_image }}
@@ -29,8 +29,8 @@ spec:
       role: vault-role
       address: {{ vault.url }}
       authpath: {{ network.env.type }}{{ component_ns }}-auth
-      secretcryptoprefix: {{ vault.secret_path | default('secretsv2') }}/data/crypto/{{ component_type }}Organizations/{{ component }}-net/ca
-      secretcredentialsprefix: {{ vault.secret_path | default('secretsv2') }}/data/credentials/{{ component }}-net/ca/{{ component }}
+      secretcryptoprefix: {{ vault.secret_path | default('secretsv2') }}/data/crypto/{{ component_type }}Organizations/{{ component }}-bank-com/ca
+      secretcredentialsprefix: {{ vault.secret_path | default('secretsv2') }}/data/credentials/{{ component }}-bank-com/ca/{{ component }}
       serviceaccountname: vault-auth
       imagesecretname: regcred
       

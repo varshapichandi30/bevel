@@ -26,7 +26,7 @@
     peer: "{{ participant.peers | first }}"
     org_query: "organizations[?name=='{{participant.name}}']"
     org: "{{ network | json_query(org_query) | first }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ channel.participants }}"
   loop_control:
     loop_var: participant
@@ -53,7 +53,7 @@
     peer: "{{ participant.peers | first }}"
     org_query: "organizations[?name=='{{participant.name}}']"
     org: "{{ network | json_query(org_query) | first }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ channel.participants }}"
   loop_control:
     loop_var: participant
@@ -66,7 +66,7 @@
     peer: "{{ participant.peers | first }}"
     org_query: "organizations[?name=='{{participant.name}}']"
     org: "{{ network | json_query(org_query) | first }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ channel.participants }}"
   loop_control:
     loop_var: participant

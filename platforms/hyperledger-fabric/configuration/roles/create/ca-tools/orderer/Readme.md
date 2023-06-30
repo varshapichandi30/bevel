@@ -79,7 +79,7 @@ This task pushes the above generated value files to git repo.
 #### 6. Check if crypto materials exists in vault.
 This task Check if crypto materials exists in vault.
 ##### Input Variables
-    *namespace: "Namespace of org , Format: {{ item.name |lower }}-net"
+    *namespace: "Namespace of org , Format: {{ item.name |lower }}"
     *vault: "Vault Details"
     *component_type: "Type of org"
 **include_role**: It includes the name of intermediatory role which is required for creating the secrets, here `crypto_materials`.
@@ -87,7 +87,7 @@ This task Check if crypto materials exists in vault.
 #### 7. Create the Ambassador credentials
 This task creates the Ambassador TLS credentials
 ##### Input Variables
-    *namespace: "Namespace of org , Format: {{ item.name |lower }}-net"
+    *namespace: "Namespace of org , Format: {{ item.name |lower }}"
     *vault: "Vault Details"
     *kubernetes: "{{ item.k8s }}"
 **include_role**: It includes the name of intermediatory role which is required for creating the secrets, here `k8s_secrets`.

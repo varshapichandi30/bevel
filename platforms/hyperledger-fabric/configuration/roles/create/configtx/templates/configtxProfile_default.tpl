@@ -9,7 +9,7 @@ Profiles:
       EtcdRaft:
         Consenters:
 {% for orderer in orderers %}
-{% set component_ns = orderer.org_name.lower() + '-net' %}
+{% set component_ns = orderer.org_name.lower() + '-bank-com' %}
 {% if provider == 'none' %}
         - Host: {{orderer.name}}.{{ component_ns }}
           Port: 7050

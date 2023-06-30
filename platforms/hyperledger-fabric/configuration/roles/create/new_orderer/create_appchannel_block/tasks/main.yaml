@@ -13,7 +13,7 @@
   include_tasks: create_appchannel_block.yaml
   vars:
     orderers: "{{ org.services.orderers }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}-bank-com"
   loop: "{{ network.organizations }}"
   loop_control:
     loop_var: org

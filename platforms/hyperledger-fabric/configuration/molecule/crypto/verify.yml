@@ -14,7 +14,7 @@
   - name: Check if root token does not exist in the namespace
     k8s_info:
       kind: Secret
-      namespace: "testorderer-net"
+      namespace: "testorderer-bank-com"
       name: "roottoken"
       kubeconfig: "/tmp/molecule/kind-default/kubeconfig"
       context: "kind"
@@ -55,11 +55,11 @@
 # 
 # ################# peers ##########################################
 #####################################################################################
-  # Check if root token secret exist in the namespace testpeer-net
-  - name: Check if root token does not exist in the namespace testpeer-net
+  # Check if root token secret exist in the namespace testpeer
+  - name: Check if root token does not exist in the namespace testpeer-bank-com
     k8s_info:
       kind: Secret
-      namespace: "testpeer-net"
+      namespace: "testpeer-bank-com"
       name: "roottoken"
       kubeconfig: "/tmp/molecule/kind-default/kubeconfig"
       context: "kind"

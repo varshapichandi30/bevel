@@ -29,7 +29,7 @@ This task checks if the vault path already exists.
     *VAULT_TOKEN: Contains Vault Token, Fetched using 'vault.' from network.yaml
 **environment** : It includes the list of environment variables.
 **shell** : This command lists the auth methods enabled. The output lists the enabled auth methods and options for those methods.
-**vault* : This variable contains details of vault from network.yaml. It comes from previous calling playbook(deploy-network,yaml) 
+**vault* : This variable contains details of vault from network.yaml. It comes from previous calling playbook(deploywork,yaml) 
 
 ##### Output Variables
     auth_list: Stores the list of enables auth methods
@@ -55,7 +55,7 @@ This task creates the build temp directory.
 #### 5. Create vault_kubernetes secrets tokens
 This task creates secrets for the root token and the reviewer token
 ##### Input Variables
-    *namespace: "Namespace of org , Format: {{ item.name |lower }}-net"
+    *namespace: "Namespace of org , Format: {{ item.name |lower }}"
     *vault: "Vault Details"
     *kubernetes: "{{ item.k8s }}"
 **include_role**: It includes the name of intermediatory role which is required for creating the secrets, here `k8s_secret`.
@@ -76,7 +76,7 @@ This is the nested Task for chaincode commit.
     *type: "vault_kubernetes_job"
     *component_name: Name of the component, "{{ item.name | lower}}}}-vaultkubernetes-job"
     *component_type: Type of the component, "{{ item.type | lower}} }}"
-    *component_ns: "Namespace of organisation , Format: {{ item.name | lower}}-net"
+    *component_ns: "Namespace of organisation , Format: {{ item.name | lower}}"
     *git_url: "Git SSH url"
     *git_branch: "Git Branch Name"
     *charts_dir: "Path of Charts Directory"

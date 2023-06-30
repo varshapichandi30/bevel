@@ -49,6 +49,6 @@
     peer: "{{ participant }}"
     org_query: "organizations[?name=='{{participant.name}}']"
     org: "{{ network | json_query(org_query) | first }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
     channel_name: "{{ channel.channel_name | lower }}"
     org_name: "{{ participant.name }}MSP"

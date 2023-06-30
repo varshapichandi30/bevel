@@ -18,7 +18,7 @@ This task creates the folder to store crypto material
 #### 2. Create ca-server secrets tokens
 This task creates secrets for the root token and the reviewer token
 ##### Input Variables
-    *namespace: "Namespace of org , Format: {{ item.name |lower }}-net"
+    *namespace: "Namespace of org , Format: {{ item.name |lower }}"
     *vault: "Vault Details"
     *kubernetes: "{{ item.k8s }}"
 **include_role**: It includes the name of intermediatory role which is required for creating the secrets, here `k8s_secret`.
@@ -29,7 +29,7 @@ This tasks generates cacerts helmrelease file.
     *name: "Name of the organisation"
     *type: "cacerts_job"
     *component_name: Name of the component, "{{ item.name | lower }}--cacerts-job"
-    *component_ns: "Namespace of organisation , Format: {{ item.name | lower}}-net"
+    *component_ns: "Namespace of organisation , Format: {{ item.name | lower}}"
     *subject: "Subject of the services ca organization's, {{ ca.subject }}"
     *git_url: "Git SSH url"
     *git_branch: "Git Branch Name"
@@ -49,7 +49,7 @@ This task pushes the above generated value files to git repo.
 #### 5. Create the Ambassador credentials
 This task creates the Ambassador TLS credentials
 ##### Input Variables
-    *namespace: "Namespace of org , Format: {{ item.name |lower }}-net"
+    *namespace: "Namespace of org , Format: {{ item.name |lower }}"
     *vault: "Vault Details"
     *kubernetes: "{{ item.k8s }}"
 **include_role**: It includes the name of intermediatory role which is required for creating the secrets, here `k8s_secret`.

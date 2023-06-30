@@ -23,7 +23,7 @@
       include_role:
         name: "create/operations_console"
       vars:        
-        component_ns: "{{ item.name | lower }}-net"  
+        component_ns: "{{ item.name | lower }}"  
         git_protocol: "{{ item.gitops.git_protocol }}"      
         git_url: "{{ item.gitops.git_url }}"
         git_branch: "{{ item.gitops.branch }}"        
@@ -42,7 +42,7 @@
         name: "create/console_assets"
       vars:
         build_path: "{{ playbook_dir }}/../../../build/assets"  # default path for generation of assets is project_dir/build
-        component_ns: "{{ item.name | lower }}-net"        
+        component_ns: "{{ item.name | lower }}"        
       loop: "{{ network['organizations'] }}"
 
   vars: #These variables can be overriden from the command line

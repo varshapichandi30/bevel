@@ -13,7 +13,7 @@
   include_tasks: update_orderer_address.yaml
   vars:
     kubernetes: "{{ org.k8s }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
     channelName: "{{ channel.channel_name | lower }}"
     ordererOrg: "{{ org }}"
   loop: "{{ organizations }}"

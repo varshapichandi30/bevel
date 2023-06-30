@@ -14,7 +14,7 @@
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: "Job"
-    namespace: "{{ org.name |lower }}-net"
+    namespace: "{{ org.name |lower }}"
     kubernetes: "{{ org.k8s }}"
     component_name: "installchaincode-{{ peer.name }}-{{ chaincode.name }}-{{ chaincode.version }}"
   when: chaincode is defined
@@ -27,9 +27,9 @@
     name: "{{ org.name | lower }}"
     type: "upgrade_chaincode_job"
     component_name: "upgrade-{{item.channel_name|lower}}-{{chaincode.name}}{{chaincode.version}}"
-    namespace: "{{ org.name |lower }}-net"
+    namespace: "{{ org.name |lower }}"
     peer_name: "{{ peer.name }}"
-    peer_address: "{{ peer.name }}.{{ org.name |lower }}-net:{{ peer.grpc.port }}"
+    peer_address: "{{ peer.name }}.{{ org.name |lower }}:{{ peer.grpc.port }}"
     git_protocol: "{{ org.gitops.git_protocol }}"
     git_url: "{{ org.gitops.git_url }}"
     git_branch: "{{ org.gitops.branch }}"

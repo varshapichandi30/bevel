@@ -35,7 +35,7 @@
     orderer: "{{ network.orderers | first }}"
     org_query: "organizations[?name=='{{ orderer.org_name }}']"
     org: "{{ network | json_query(org_query) | first }}"
-    namespace: "{{ org.name | lower }}-net"
+    namespace: "{{ org.name | lower }}"
     kubernetes: "{{ org.k8s }}"
     label_selectors:
       - app = {{ orderer.name | lower }}
@@ -58,7 +58,7 @@
     org_query: "organizations[?name=='{{ orderer.org_name }}']"
     org: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
 
 # check if original channel config and modified config is same
 # if that is the case we dont have to proceed doing the channel update
@@ -81,7 +81,7 @@
     org_query: "orderers[?org_name=='{{ org.name }}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ network.organizations }}"
   loop_control:
     loop_var: org
@@ -94,7 +94,7 @@
     org_query: "orderers[?org_name=='{{ org.name }}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ network.organizations }}"
   loop_control:
     loop_var: org
@@ -118,7 +118,7 @@
     org_query: "organizations[?name=='{{ orderer.org_name }}']"
     org: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
 
 # check if original channel config and modified config is same
 # if that is the case we dont have to proceed doing the channel update
@@ -141,7 +141,7 @@
     org_query: "orderers[?org_name=='{{ org.name }}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ network.organizations }}"
   loop_control:
     loop_var: org
@@ -154,7 +154,7 @@
     org_query: "orderers[?org_name=='{{ org.name }}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ network.organizations }}"
   loop_control:
     loop_var: org

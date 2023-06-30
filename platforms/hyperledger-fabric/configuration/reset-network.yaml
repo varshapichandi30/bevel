@@ -6,7 +6,7 @@
 
 # This playbook deletes the DLT network on existing Kubernetes clusters which has been created
 #  using Hyperledger Bevel.
-# Please use the same network.yaml to run this playbook as used for deploy-network.yaml
+# Please use the same network.yaml to run this playbook as used for deploywork.yaml
 ###########################################################################################
 # THIS PLAYBOOK DELETES EVERYTHING, EVEN NAMESPACES and FLUX
 ###########################################################################################
@@ -20,7 +20,7 @@
     - include_role: 
         name: "delete/vault_secrets"
       vars:
-        component_name: "{{ item.name | lower }}-net"
+        component_name: "{{ item.name | lower }}"
         org_name: "{{ item.name | lower }}"
         component_type: "{{ item.type | lower }}"
         services: "{{ item.services }}"
@@ -46,7 +46,7 @@
     - include_role:
         name: "delete/flux_releases"
       vars:
-        component_name: "{{ item.name | lower }}-net"
+        component_name: "{{ item.name | lower }}"
         org_name: "{{ item.name | lower }}"
         component_type: "{{ item.type | lower}}"
         component_services: "{{ item.services }}"
@@ -57,7 +57,7 @@
     - include_role:
         name: "delete/genesis"
       vars:
-        component_name: "{{ item.name | lower }}-net"
+        component_name: "{{ item.name | lower }}"
       loop: "{{ network['organizations'] }}"
       when: item.type == "orderer"
 

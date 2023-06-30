@@ -62,19 +62,19 @@
 # - name: Argo app deployment for carrier peer
 #   shell: |
 #     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/carrier/carrier/values-peer0.yaml
-#   when: namespace == 'carrier-net'
+#   when: namespace == 'carrier'
 
 # - name: Argo app deployment for manufacturer peer
 #   shell: |
 #     kubectl apply -n argocd -f /home/bevel/platforms/hyperledger-fabric/releases1/dev/manufacturer/manufacturer/values-peer0.yaml
-#   when: namespace == 'manufacturer-net'
+#   when: namespace == 'manufacturer'
 
 # Wait for the Orderer HelmRelease
 - name: 'Wait for {{ peer.name }} Application in {{ namespace }}'
   k8s_info:
     api_version: "helm.toolkit.fluxcd.io/v2beta1"
     kind: "HelmRelease"
-    namespace: "{{ item.name | lower }}-net"
+    namespace: "{{ item.name | lower }}-bank-com"
     kubeconfig: "{{  item.k8s.config_file }}"
     context: "{{ item.k8s.context }}"
     name: "{{ item.name | lower }}-{{ peer.name }}"
@@ -90,12 +90,12 @@
   when: refresh_cert is defined and refresh_cert == 'true'
 
 # Wait for peer pods to be in the state of running
-- name: "Waiting for peer pod {{ peer.name }} in {{ item.name | lower }}-net"
+- name: "Waiting for peer pod {{ peer.name }} in {{ item.name | lower }}-bank-com"
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: "Pod"
-    namespace: "{{ item.name | lower }}-net"
+    namespace: "{{ item.name | lower }}-bank-com"
     component_name: "{{ peer.name }}"
     kubernetes: "{{ item.k8s }}"
     label_selectors:

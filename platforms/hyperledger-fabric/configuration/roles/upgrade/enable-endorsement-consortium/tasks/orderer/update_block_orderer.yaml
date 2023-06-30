@@ -69,6 +69,6 @@
     KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ component_ns }} ${PEER_CLI} -- peer channel update -f {{ channel_name }}_config_update.pb -o ${ORDERER_URL} -c {{ channel_name }} --tls --cafile ${ORDERER_CA}
   environment:
     ORDERER_CA: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/orderer/tls/ca.crt"
-    ORDERER_URL: "{{ orderer.name | lower }}.{{ org.name }}-net:{{ orderer.grpc.port }}"
+    ORDERER_URL: "{{ orderer.name | lower }}.{{ org.name }}:{{ orderer.grpc.port }}"
   vars:
     kubernetes: "{{ org.k8s }}"

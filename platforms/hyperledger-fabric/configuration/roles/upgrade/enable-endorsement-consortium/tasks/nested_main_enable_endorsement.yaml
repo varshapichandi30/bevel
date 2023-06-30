@@ -50,7 +50,7 @@
     org_query: "organizations[?name=='{{orderer.org_name}}']"
     org: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
     channel_name: "syschannel"
 
 # check if original channel config and modified config is same
@@ -74,7 +74,7 @@
     org_query: "orderers[?org_name=='{{org.name}}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
     channel_name: "syschannel"
   loop: "{{ network.organizations }}"
   loop_control:
@@ -87,7 +87,7 @@
   vars:
     org_query: "organizations[?name=='{{peer.name}}']"
     org: "{{ network | json_query(org_query) | first }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
     channel_name: "{{ channel.channel_name | lower }}"
     sys_channel_name: "syschannel"
   loop: "{{ channel.participants }}"
@@ -103,7 +103,7 @@
     org_query: "orderers[?org_name=='{{org.name}}']"
     orderer: "{{ network | json_query(org_query) | first }}"
     component_name: "{{ org.name | lower }}"
-    component_ns: "{{ org.name | lower }}-net"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ network.organizations }}"
   loop_control:
     loop_var: org

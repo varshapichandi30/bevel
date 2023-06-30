@@ -12,7 +12,7 @@
   include_tasks: nested_valuefile.yaml
   vars:      
     name: "{{ org.name | lower}}"
-    namespace: "{{ org.name | lower}}-net"
+    namespace: "{{ org.name | lower}}"
     component_type: "peer"
   loop: "{{ org.services.peers }}"
   loop_control:

@@ -151,7 +151,7 @@ This tasks checks if install-chaincode is already running or not.
 #### 3. Create the git credentialss
 This task creates the git credentials secret
 ##### Input Variables
-    *namespace: "Namespace of org , Format: {{ item.name |lower }}-net"
+    *namespace: "Namespace of org , Format: {{ item.name |lower }}"
     *component_name: "{{ namespace }}"
     *vault: "Vault Details"
     *kubernetes: "{{ item.k8s }}"

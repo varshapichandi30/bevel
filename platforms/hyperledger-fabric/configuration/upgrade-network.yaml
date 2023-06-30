@@ -11,7 +11,7 @@
 # network.yaml before execution of this playbook 
 ###########################################################################################
 # To Run this playbook from this directory, use the following command (network.yaml also in this directory)
-#  ansible-playbook upgrade-network.yaml -e "@./network.yaml"
+#  ansible-playbook upgradework.yaml -e "@./network.yaml"
 ############################################################################################
 ---
   # This will apply to ansible_provisioners. /etc/ansible/hosts should be configured with this group
@@ -36,7 +36,7 @@
         name: "upgrade/orderer-binary"
       vars:
         build_path: "./build"
-        namespace: "{{ item.name | lower}}-net"
+        namespace: "{{ item.name | lower}}"
         component_type: "{{ item.type | lower}}"
         component_services: "{{ item.services }}"
         vault: "{{ item.vault }}"
@@ -55,7 +55,7 @@
         name: "upgrade/peer-binary"
       vars:
         build_path: "./build"
-        namespace: "{{ item.name | lower}}-net"
+        namespace: "{{ item.name | lower}}"
         component_type: "{{ item.type | lower}}"
         component_services: "{{ item.services }}"
         vault: "{{ item.vault }}"
@@ -72,7 +72,7 @@
       include_role:
         name: "create/ca-server"
       vars:
-        component_name: "{{ item.name | lower}}-net"
+        component_name: "{{ item.name | lower}}"
         component: "{{ item.name | lower}}"
         component_type: "{{ item.type | lower}}"
         component_services: "{{ item.services }}"

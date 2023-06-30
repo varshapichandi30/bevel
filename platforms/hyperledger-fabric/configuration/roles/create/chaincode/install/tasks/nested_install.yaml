@@ -15,7 +15,7 @@
   include_tasks: nested_valuefile.yaml
   vars:      
     name: "{{ org.name | lower}}"
-    namespace: "{{ org.name | lower}}-net"
+    namespace: "{{ org.name | lower}}"
     component_type: "peer"
     component_peers: "{{ org.services.peers }}"
     vault: "{{ org.vault }}"
@@ -36,7 +36,7 @@
   include_tasks: nested_valuefile.yaml
   vars:      
     name: "{{ org.name | lower }}"
-    namespace: "{{ org.name | lower}}-net"
+    namespace: "{{ org.name | lower}}"
     component_type: "peer"
     component_peers: "{{ org.services.peers }}"
     vault: "{{ org.vault }}"
@@ -58,7 +58,7 @@
   include_tasks: nested_valuefile.yaml
   vars:      
     name: "{{ org.name | lower}}"
-    namespace: "{{ org.name | lower}}-net"
+    namespace: "{{ org.name | lower}}"
     component_type: "peer"
     component_peers: "{{ org.services.peers }}"
     vault: "{{ org.vault }}"

@@ -52,10 +52,10 @@
     - notest
 
 # wait until the pod is not in running state as there is a time lag between when pod is recreated
-- name: 'Wait for {{ orderer.name }} in {{ item.name | lower }}-net to terminate'
+- name: 'Wait for {{ orderer.name }} in {{ item.name | lower }} to terminate'
   k8s_info:
     kind: "Pod"
-    namespace: "{{ item.name | lower }}-net"
+    namespace: "{{ item.name | lower }}"
     kubeconfig: "{{ item.k8s.config_file }}"
     context: "{{ item.k8s.context }}"
     label_selectors:
@@ -71,10 +71,10 @@
     - notest
 
 # Wait for orderer pods to be in the state of running
-- name: 'Wait for {{ orderer.name }} in {{ item.name | lower }}-net'
+- name: 'Wait for {{ orderer.name }} in {{ item.name | lower }}'
   k8s_info:
     kind: "Pod"
-    namespace: "{{ item.name | lower }}-net"
+    namespace: "{{ item.name | lower }}"
     kubeconfig: "{{ item.k8s.config_file }}"
     context: "{{ item.k8s.context }}"
     label_selectors:
@@ -90,8 +90,8 @@
     - notest
 
 # Ask the operator to verify the logs
-- name: 'Verify logs for pod {{ orderer.name }}-0 in {{ item.name | lower }}-net'
+- name: 'Verify logs for pod {{ orderer.name }}-0 in {{ item.name | lower }}'
   pause:
-    prompt: "Please verify logs of container {{ orderer.name }} in Pod {{ orderer.name }}-0 within namespace {{ item.name | lower}}-net to ensure it is upgraded and ready
+    prompt: "Please verify logs of container {{ orderer.name }} in Pod {{ orderer.name }}-0 within namespace {{ item.name | lower}} to ensure it is upgraded and ready
             (ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)"
   when: git_updated is defined

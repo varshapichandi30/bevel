@@ -61,7 +61,7 @@
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: "Job"
-    namespace: "{{ org.name |lower }}-net"
+    namespace: "{{ org.name |lower }}"
     kubernetes: "{{ org.k8s }}"
     component_name: "installchaincode-{{ peer.name }}-{{ chaincode.name }}-{{ chaincode.version }}"
   when: 

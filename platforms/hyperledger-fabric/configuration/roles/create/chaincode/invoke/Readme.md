@@ -70,7 +70,7 @@ This is the nested Task for chaincode invocation.
     *name: "Name of the organisation"
     type: "instantiate_chaincode_job"
     *component_name: Name of the component, "instantiate-{{ org.name | lower }}-{{ peer.name }}-{{item.channel_name|lower}}-{{peer.chaincode.name}}{{peer.chaincode.version}}"
-    *namespace: "Namespace of org , Format: {{ org.name |lower }}-net"
+    *namespace: "Namespace of org , Format: {{ org.name |lower }}"
     *peer_name: "Name of the peer"
     *peer_address: "Gossip peer Address"    
     *git_url: "Git SSH url"

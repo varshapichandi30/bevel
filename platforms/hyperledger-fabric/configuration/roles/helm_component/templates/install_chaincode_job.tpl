@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: {{ component_name }}
-  namespace: {{ name | lower | e }}-net
+  namespace: {{ name | lower | e }}
   annotations:
     fluxcd.io/automated: "false"
 spec:

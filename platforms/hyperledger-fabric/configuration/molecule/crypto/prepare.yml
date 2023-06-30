@@ -79,14 +79,14 @@
     changed_when: false
     delegate_to: localhost
   
-  - name: create testpeer-net namespace
+  - name: create testpeer-bank-com namespace
     shell: |
-      kubectl create namespace testpeer-net
+      kubectl create namespace testpeer-bank-com
     changed_when: false
     delegate_to: localhost
   
-  - name: create testorderer-net namespace
+  - name: create testorderer-bank-com namespace
     shell: |
-      kubectl create namespace testorderer-net
+      kubectl create namespace testorderer-bank-com
     changed_when: false
     delegate_to: localhost
