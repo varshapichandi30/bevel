@@ -1,0 +1,51 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: acme-ca
+  namespace: acme
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  interval: 1m
+  releaseName: acme-ca
+  chart:
+    spec:
+      interval: 1m
+      sourceRef:
+        kind: GitRepository
+        name: flux-local
+        namespace: flux-local
+      chart: platforms/hyperledger-fabric/charts/ca    
+  values:
+    metadata:
+      namespace: acme
+      images:
+        alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+        ca: hyperledger/fabric-ca:1.4.8
+ 
+    server:
+      name: ca
+      tlsstatus: true
+      admin: acme-admin 
+  
+    storage:
+      storageclassname: acmesc
+      storagesize: 512Mi
+    vault:
+      role: vault-role
+      address: http://54.196.243.208:8200
+      authpath: localacme-auth
+      secretcert: secretsv2/data/crypto/peerOrganizations/acme/ca?ca.acme-cert.pem
+      secretkey: secretsv2/data/crypto/peerOrganizations/acme/ca?acme-CA.key
+      secretadminpass: secretsv2/data/credentials/acme/ca/acme?user
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+    service:
+      servicetype: ClusterIP
+      ports:
+        tcp:
+          port: 7054
+    proxy:
+      provider: haproxy
+      type: peer
+      external_url_suffix: bank.com
