@@ -72,7 +72,7 @@
         component: testorderer
         ca:
           name: test_ca
-          subject: "/C=GB/ST=London/L=London/O=Orderer/CN=ca.sj-bank-com"
+          subject: "/C=GB/ST=London/L=London/O=Orderer/CN=ca.sj"
         docker_url: test_docker_url
         gitops:
           git_protocol: "ssh"
@@ -113,7 +113,7 @@
         component: testpeer
         ca:
           name: test_ca
-          subject: "/C=GB/ST=London/L=London/O=Peer/CN=ca.sj-bank-com"
+          subject: "/C=GB/ST=London/L=London/O=Peer/CN=ca.sj"
         docker_url: test_docker_url
         gitops:
           git_protocol: "ssh" 

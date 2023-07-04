@@ -4,12 +4,12 @@
 #  SPDX-License-Identifier: Apache-2.0
 ##############################################################################################
 
-- name: "Waiting for peer pod {{ peer_name }} in {{ org.name | lower }}-bank-com"
+- name: "Waiting for peer pod {{ peer_name }} in {{ org.name | lower }}"
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: "Pod"
-    namespace: "{{ org.name | lower }}-bank-com"
+    namespace: "{{ org.name | lower }}"
     component_name: "{{ peer_name }}"
     kubernetes: "{{ org.k8s }}"
     label_selectors:

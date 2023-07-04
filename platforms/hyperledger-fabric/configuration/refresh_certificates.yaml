@@ -32,7 +32,7 @@
       build_path: "./build"
       orderers: "{{ org.services.orderers }}"
       vault: "{{ org.vault }}"
-      component_ns: "{{ org.name | lower}}-bank-com"
+      component_ns: "{{ org.name | lower}}"
     loop: "{{ network.organizations }}"
     loop_control:
       loop_var: org
@@ -43,7 +43,7 @@
     include_role:
       name: "create/ca-tools/orderer"
     vars:
-      component_name: "{{ item.name | lower}}-bank-com"
+      component_name: "{{ item.name | lower}}"
       component: "{{ item.name | lower}}"
       component_type: "{{ item.type | lower}}"
       component_services: "{{ item.services }}"
@@ -65,7 +65,7 @@
       docker_url: "{{ network.docker.url }}"
       sys_channel_name: "syschannel"
       vault: "{{ org.vault }}"
-      component_ns: "{{ org.name | lower}}-bank-com"
+      component_ns: "{{ org.name | lower}}"
     loop: "{{ network.organizations }}"
     loop_control:
       loop_var: org
@@ -75,7 +75,7 @@
   - include_role:
       name: "create/ca-tools/peer"
     vars:
-      component_name: "{{ item.name | lower}}-bank-com"
+      component_name: "{{ item.name | lower}}"
       component: "{{ item.name | lower}}"
       component_type: "{{ item.type | lower}}"
       component_services: "{{ item.services }}"
@@ -93,7 +93,7 @@
       name: "create/orderers"
     vars:
       build_path: "./build"
-      namespace: "{{ item.name | lower}}-bank-com"
+      namespace: "{{ item.name | lower}}"
       component_type: "{{ item.type | lower}}"
       component_services: "{{ item.services }}"
       vault: "{{ item.vault }}"
@@ -113,7 +113,7 @@
         name: "create/peers"
     vars:
       build_path: "./build"
-      namespace: "{{ item.name | lower}}-bank-com"
+      namespace: "{{ item.name | lower}}"
       component_type: "{{ item.type | lower}}"
       component_services: "{{ item.services }}"
       vault: "{{ item.vault }}"

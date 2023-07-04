@@ -13,7 +13,7 @@
 - name: "Check if fabric cli is already present"
   k8s_info:
     kind: Pod
-    namespace: "{{ org.name }}-bank-com"
+    namespace: "{{ org.name }}"
     kubeconfig: "{{ org.k8s.config_file }}"
     context: "{{ org.k8s.context }}"
     label_selectors:
@@ -30,7 +30,7 @@
 - name: "Check if fabric cli is present"
   k8s_info:
     kind: Pod
-    namespace: "{{ org.name }}-bank-com"
+    namespace: "{{ org.name }}"
     kubeconfig: "{{ org.k8s.config_file }}"
     context: "{{ org.k8s.context }}"
     label_selectors:
@@ -45,14 +45,14 @@
 # from first peer of creator cli
 - name: fetch and copy the configuration block from the blockchain
   shell: |
-    export PEER_CLI=$(KUBECONFIG={{ org.k8s.config_file }} kubectl get po -n {{ org.name }}-bank-com | grep "cli" | head -n 1 | awk '{print $1}')
-    KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ org.name }}-bank-com ${PEER_CLI} -- peer channel fetch config {{ channel_name }}_config_block.pb -o {{ participantx.ordererAddress }} -c {{ channel_name }} --tls --cafile ${ORDERER_CA}
-    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/create-block-{{ channel_name | lower }}.sh {{ org.name }}-bank-com/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/create_block.sh
-    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/channel-artifacts/{{ channel_name | lower }}.json {{ org.name }}-bank-com/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/config.json
-    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/channel-artifacts/{{ channel_name | lower}}-anchorfile.json {{ org.name }}-bank-com/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/anchorfile.json
-    KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ org.name }}-bank-com ${PEER_CLI} -- chmod 777 ./create_block.sh
-    KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ org.name }}-bank-com ${PEER_CLI} --  sh ./create_block.sh
-    KUBECONFIG={{ kubernetes.config_file }} kubectl cp {{ org.name }}-bank-com/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/{{ channel_name | lower }}_update_in_envelope.pb ./build/{{ channel_name | lower}}_config_block.pb
+    export PEER_CLI=$(KUBECONFIG={{ org.k8s.config_file }} kubectl get po -n {{ org.name }} | grep "cli" | head -n 1 | awk '{print $1}')
+    KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ org.name }} ${PEER_CLI} -- peer channel fetch config {{ channel_name }}_config_block.pb -o {{ participantx.ordererAddress }} -c {{ channel_name }} --tls --cafile ${ORDERER_CA}
+    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/create-block-{{ channel_name | lower }}.sh {{ org.name }}/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/create_block.sh
+    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/channel-artifacts/{{ channel_name | lower }}.json {{ org.name }}/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/config.json
+    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/channel-artifacts/{{ channel_name | lower}}-anchorfile.json {{ org.name }}/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/anchorfile.json
+    KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ org.name }} ${PEER_CLI} -- chmod 777 ./create_block.sh
+    KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ org.name }} ${PEER_CLI} --  sh ./create_block.sh
+    KUBECONFIG={{ kubernetes.config_file }} kubectl cp {{ org.name }}/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/{{ channel_name | lower }}_update_in_envelope.pb ./build/{{ channel_name | lower}}_config_block.pb
   environment:
     ORDERER_CA: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/orderer/tls/ca.crt"
   vars: 

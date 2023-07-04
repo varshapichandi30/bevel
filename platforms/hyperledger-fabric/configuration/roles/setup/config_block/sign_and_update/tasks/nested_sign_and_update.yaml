@@ -12,7 +12,7 @@
 - name: "Check if fabric cli is already present"
   k8s_info:
     kind: Pod
-    namespace: "{{ org.name }}-bank-com"
+    namespace: "{{ org.name }}"
     kubeconfig: "{{ org.k8s.config_file }}"
     context: "{{ org.k8s.context }}"
     label_selectors:
@@ -28,7 +28,7 @@
     component_type: "existing_peer_cli_job"    
     component_name: "cli-{{ channel_name }}-{{ participant.name }}-{{ peer.name }}"
     peer_name: "{{ peer.name }}"
-    component_ns: "{{ participant.name | lower}}-bank-com"
+    component_ns: "{{ participant.name | lower}}"
     vault: "{{ org.vault }}"
     fabrictools_image: "hyperledger/fabric-tools:{{ network.version }}"
     alpine_image: "{{ docker_url }}/alpine-utils:1.0"
@@ -47,7 +47,7 @@
 - name: "Check if fabric cli is present"
   k8s_info:
     kind: Pod
-    namespace: "{{ org.name }}-bank-com"
+    namespace: "{{ org.name }}"
     kubeconfig: "{{ org.k8s.config_file }}"
     context: "{{ org.k8s.context }}"
     label_selectors:
@@ -62,10 +62,10 @@
 # Copy the block back to the build folder after signature
 - name: signing from the admin of {{ org.name }}
   shell: |
-    export PEER_CLI=$(KUBECONFIG={{ kubernetes.config_file }} kubectl get po -n {{ org.name | lower }}-bank-com | grep "cli" | head -n 1 | awk '{print $1}')
-    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/{{ channel_name | lower}}_config_block.pb {{ org.name | lower }}-bank-com/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/{{ channel_name | lower}}_config_block.pb
-    KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ org.name | lower }}-bank-com ${PEER_CLI} -- peer channel signconfigtx -f {{ channel_name | lower}}_config_block.pb
-    KUBECONFIG={{ kubernetes.config_file }} kubectl cp {{ org.name | lower }}-bank-com/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/{{ channel_name | lower}}_config_block.pb ./build/{{ channel_name | lower}}_config_block.pb
+    export PEER_CLI=$(KUBECONFIG={{ kubernetes.config_file }} kubectl get po -n {{ org.name | lower }} | grep "cli" | head -n 1 | awk '{print $1}')
+    KUBECONFIG={{ kubernetes.config_file }} kubectl cp ./build/{{ channel_name | lower}}_config_block.pb {{ org.name | lower }}/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/{{ channel_name | lower}}_config_block.pb
+    KUBECONFIG={{ kubernetes.config_file }} kubectl exec -n {{ org.name | lower }} ${PEER_CLI} -- peer channel signconfigtx -f {{ channel_name | lower}}_config_block.pb
+    KUBECONFIG={{ kubernetes.config_file }} kubectl cp {{ org.name | lower }}/${PEER_CLI}:/opt/gopath/src/github.com/hyperledger/fabric/peer/{{ channel_name | lower}}_config_block.pb ./build/{{ channel_name | lower}}_config_block.pb
   vars: 
     kubernetes: "{{ org.k8s }}"
 

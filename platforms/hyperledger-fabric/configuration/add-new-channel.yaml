@@ -30,11 +30,11 @@
       include_role: 
         name: "setup/vault_kubernetes"
       vars:
-        component_name: "{{ item.name | lower }}-bank-com"
+        component_name: "{{ item.name | lower }}"
         kubernetes: "{{ item.k8s }}"
         vault: "{{ item.vault }}"
         component_type: "{{ item.type | lower }}"
-        auth_path: "{{ network.env.type }}{{ item.name | lower }}-bank-com-auth"
+        auth_path: "{{ network.env.type }}{{ item.name | lower }}-auth"
       loop: "{{ network['organizations'] }}"        
         
     # Create generate_crypto script for each organization

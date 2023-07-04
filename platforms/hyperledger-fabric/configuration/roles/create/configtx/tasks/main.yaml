@@ -73,7 +73,7 @@
     marker: "#"
   vars:    
     component_name: "{{ item.name }}"
-    component_ns: "{{ item.name | lower }}-bank-com"
+    component_ns: "{{ item.name | lower }}"
     component_type: "{{ item.type | lower }}"
     provider: "{{ network.env.proxy }}"
     filename: configtxOrg_{{ 'custom' if network.configtx is defined and network.configtx.custom == true and cforg.stat.exists else 'default' }}.tpl

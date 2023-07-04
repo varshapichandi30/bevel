@@ -29,7 +29,7 @@
     include_role:
       name: "create/ca-tools/orderer"
     vars:
-      component_name: "{{ item.name | lower}}-bank-com"
+      component_name: "{{ item.name | lower}}"
       component: "{{ item.name | lower}}"
       component_type: "{{ item.type | lower}}"
       component_services: "{{ item.services }}"
@@ -51,7 +51,7 @@
       docker_url: "{{ network.docker.url }}"
       channel_name: "syschannel"
       update_type: "tls"
-      component_ns: "{{ org.name | lower}}-bank-com"
+      component_ns: "{{ org.name | lower}}"
     loop: "{{ network.organizations }}"
     loop_control:
       loop_var: org
@@ -63,7 +63,7 @@
       name: "create/orderers"
     vars:
       build_path: "./build"
-      namespace: "{{ item.name | lower}}-bank-com"
+      namespace: "{{ item.name | lower}}"
       component_type: "{{ item.type | lower}}"
       component_services: "{{ item.services }}"
       vault: "{{ item.vault }}"
@@ -86,7 +86,7 @@
       docker_url: "{{ network.docker.url }}"
       channel_name: "syschannel"
       update_type: "address"
-      component_ns: "{{ org.name | lower}}-bank-com"
+      component_ns: "{{ org.name | lower}}"
     loop: "{{ network.organizations }}"
     loop_control:
       loop_var: org

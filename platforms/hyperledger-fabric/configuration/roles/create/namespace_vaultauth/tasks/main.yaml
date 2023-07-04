@@ -9,12 +9,12 @@
 #############################################################################################
 
 # Check if namespace created
-- name: "Checking if the namespace {{ item.name | lower }}-bank-com already exists"
+- name: "Checking if the namespace {{ item.name | lower }} already exists"
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/k8_component"
   vars:
     component_type: "Namespace"
-    component_name: "{{ item.name | lower }}-bank-com"
+    component_name: "{{ item.name | lower }}"
     type: "no_retry"
   register: get_namespace
   tags:
@@ -89,37 +89,37 @@
     - notest
 
 # Check if ClusterRoleBinding created
-- name: "Checking for the {{ item.name | lower }}-bank-com-role-tokenreview-binding"
+- name: "Checking for the {{ item.name | lower }}-role-tokenreview-binding"
   tags:
     - notest
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/k8_component"
   vars:
     component_type: "ClusterRoleBinding"
-    component_name: "{{ item.name | lower }}-bank-com-role-tokenreview-binding"
+    component_name: "{{ item.name | lower }}-role-tokenreview-binding"
     type: "retry"
   when: get_namespace.resources|length == 0
   
 
 # Check if ServiceAccount is created for vault-reviwer
-- name: "Including the check for ServiceAccount vault-reviewer in {{ item.name | lower }}-bank-com "
+- name: "Including the check for ServiceAccount vault-reviewer in {{ item.name | lower }} "
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/k8_component"
   vars:
     component_type: "ServiceAccount"
-    component_ns: "{{ item.name | lower }}-bank-com"
+    component_ns: "{{ item.name | lower }}"
     component_name: "vault-reviewer"
     type: "retry"
   tags:
     - notest
 
 # Check if ServiceAccount is created for vault-auth
-- name: "Including the check for ServiceAccount vault-auth in {{ item.name | lower }}-bank-com "
+- name: "Including the check for ServiceAccount vault-auth in {{ item.name | lower }} "
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/k8_component"
   vars:
     component_type: "ServiceAccount"
-    component_ns: "{{ item.name | lower }}-bank-com"
+    component_ns: "{{ item.name | lower }}"
     component_name: "vault-auth"
     type: "retry"
   tags:

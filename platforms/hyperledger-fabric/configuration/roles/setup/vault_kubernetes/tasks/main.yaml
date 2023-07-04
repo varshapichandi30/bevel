@@ -10,12 +10,12 @@
 #############################################################################################
 
 # Check if namespace created
-- name: "Waiting for the namespace {{ item.name | lower }}-bank-com to be created"
+- name: "Waiting for the namespace {{ item.name | lower }} to be created"
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/k8_component"
   vars:
     component_type: "Namespace"
-    component_name: "{{ item.name | lower }}-bank-com"
+    component_name: "{{ item.name | lower }}"
     type: "retry"
 
 ###############################################################################################
@@ -24,7 +24,7 @@
   include_role:
     name: create/k8s_secrets
   vars: 
-    namespace: "{{ item.name | lower}}-bank-com"
+    namespace: "{{ item.name | lower}}"
     kubernetes: "{{ item.k8s }}"
     check: "docker_credentials"
 
@@ -34,7 +34,7 @@
   include_role:
     name: create/k8s_secrets
   vars: 
-    namespace: "{{ item.name | lower}}-bank-com"
+    namespace: "{{ item.name | lower}}"
     vault: "{{ item.vault }}"
     kubernetes: "{{ item.k8s }}"
     check: "token_secret"
@@ -56,7 +56,7 @@
     type: "vault_kubernetes_job"    
     component_name: "{{ item.name | lower }}-vaultkubernetes-job"
     component_type: "{{ item.type | lower }}"
-    component_ns: "{{ item.name | lower }}-bank-com"
+    component_ns: "{{ item.name | lower }}"
     git_protocol: "{{ item.gitops.git_protocol }}"
     git_url: "{{ item.gitops.git_url }}"
     git_branch: "{{ item.gitops.branch }}"
@@ -83,7 +83,7 @@
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: Job
-    namespace: "{{ item.name | lower}}-bank-com"
+    namespace: "{{ item.name | lower}}"
     component_name: "{{ item.name | lower}}-vaultkubenertes-job"
     kubernetes: "{{ item.k8s }}"
 
@@ -93,7 +93,7 @@
   include_role:
     name: delete/k8s_secrets
   vars: 
-    namespace: "{{ item.name | lower}}-bank-com"
+    namespace: "{{ item.name | lower}}"
     vault: "{{ item.vault }}"
     kubernetes: "{{ item.k8s }}"
     check: "token_secret"

@@ -26,7 +26,7 @@
     name: "cli"
     kubernetes: "{{ org.k8s }}"
     component_name: "{{ peer.name | lower}}-{{ org.name | lower }}-cli"
-    component_ns: "{{ org.name | lower}}-bank-com"
+    component_ns: "{{ org.name | lower}}"
     loop: "{{ peers }}"
   loop_control:
     loop_var: peer
@@ -42,7 +42,7 @@
     orderer_image: "hyperledger/fabric-orderer:{{ network.version }}"
     alpine_image: "{{ docker_url }}/alpine-utils:1.0"
     orderer: "{{ network.orderers | first }}"
-    component_ns: "{{ org.name | lower}}-bank-com"
+    component_ns: "{{ org.name | lower}}"
     git_protocol: "{{ org.gitops.git_protocol }}"
     git_url: "{{ org.gitops.git_url }}"
     git_branch: "{{ org.gitops.branch }}"

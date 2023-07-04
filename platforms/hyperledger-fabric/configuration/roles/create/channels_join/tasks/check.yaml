@@ -13,7 +13,7 @@
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: "Job"
-    namespace: "{{ participant.name | lower }}-bank-com"
+    namespace: "{{ participant.name | lower }}"
     component_name: "joinchannel-{{ peer.name }}-{{ channel_name }}"
     kubernetes: "{{ org.k8s }}"
   loop: "{{ participant.peers }}"
@@ -26,7 +26,7 @@
   include_role:
     name: "delete/peer_pod"
   vars:
-    namespace: "{{ participant.name | lower }}-bank-com"
+    namespace: "{{ participant.name | lower }}"
     pod_name: "{{ peer.name }}-0"
     kubernetes: "{{ org.k8s }}"
   loop: "{{ participant.peers }}"

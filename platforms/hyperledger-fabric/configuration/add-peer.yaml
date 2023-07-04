@@ -29,7 +29,7 @@
   - include_role:
       name: "create/namespace_vaultauth"
     vars:
-      component_name: "{{ item.name | lower }}-bank-com"
+      component_name: "{{ item.name | lower }}"
       component_type_name: "{{ item.type | lower }}"
       kubernetes: "{{ item.k8s }}"
       release_dir: "{{playbook_dir}}/../../../{{item.gitops.release_dir}}/{{ item.name | lower }}"
@@ -39,11 +39,11 @@
   - include_role: 
       name: "setup/vault_kubernetes"
     vars:
-      component_name: "{{ item.name | lower }}-bank-com"
+      component_name: "{{ item.name | lower }}"
       kubernetes: "{{ item.k8s }}"
       vault: "{{ item.vault }}"
       component_type: "{{ item.type | lower }}"
-      auth_path: "{{ network.env.type }}{{ item.name | lower }}-bank-com-auth"
+      auth_path: "{{ network.env.type }}{{ item.name | lower }}-auth"
     loop: "{{ network['organizations'] }}"
 
   # Create Storageclass for new organization
@@ -60,7 +60,7 @@
   - include_role:
       name: "create/ca-tools/peer"
     vars:
-      component_name: "{{ item.name | lower}}-bank-com"
+      component_name: "{{ item.name | lower}}"
       component: "{{ item.name | lower}}"
       component_type: "{{ item.type | lower}}"
       component_services: "{{ item.services }}"
@@ -87,7 +87,7 @@
       name: "create/peers"
     vars:
       build_path: "./build"
-      namespace: "{{ item.name | lower}}-bank-com"
+      namespace: "{{ item.name | lower}}"
       component_type: "{{ item.type | lower}}"
       component_services: "{{ item.services }}"
       vault: "{{ item.vault }}"

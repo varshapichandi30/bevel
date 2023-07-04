@@ -45,7 +45,7 @@
   - name: Wait for the namespace to come up
     k8s_info:
       kind: "Namespace"
-      name: "test-bank-com"
+      name: "test"
       kubeconfig: "/tmp/molecule/kind-default/kubeconfig"
       context: "kind"
     register: ns_status
@@ -70,7 +70,7 @@
     k8s_info:
       kind: "ServiceAccount"
       name: "vault-auth"
-      namespace: "test-bank-com"
+      namespace: "test"
       kubeconfig: "/tmp/molecule/kind-default/kubeconfig"
       context: "kind"
     register: va_sa_status
@@ -95,7 +95,7 @@
     k8s_info:
       kind: "ServiceAccount"
       name: "vault-reviewer"
-      namespace: "test-bank-com"
+      namespace: "test"
       kubeconfig: "/tmp/molecule/kind-default/kubeconfig"
       context: "kind"
     register: vr_sa_status
@@ -119,8 +119,8 @@
   - name: Wait for the clusterrolebinding to come up
     k8s_info:
       kind: "ClusterRoleBinding"
-      name: "test-bank-com-role-tokenreview-binding"
-      namespace: "test-bank-com"
+      name: "test-role-tokenreview-binding"
+      namespace: "test"
       kubeconfig: "/tmp/molecule/kind-default/kubeconfig"
       context: "kind"
     register: rbac_status

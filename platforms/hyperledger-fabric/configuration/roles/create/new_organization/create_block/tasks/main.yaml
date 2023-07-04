@@ -15,7 +15,7 @@
   vars:
     channel_name: "{{ channel.channel_name | lower }}"
     org_query: "organizations[?name=='{{participant.name}}']"
-    component_ns: "{{ org.name | lower }}-bank-com"
+    component_ns: "{{ org.name | lower }}"
     org: "{{ network | json_query(org_query) | first }}"
   loop: "{{ participants }}"
   loop_control:

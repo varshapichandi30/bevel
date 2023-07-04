@@ -18,7 +18,7 @@
   include_tasks: nested_main.yaml  
   vars:
     component_name: "{{ neworg.name | lower }}"
-    component_ns: "{{ neworg.name | lower }}-bank-com"
+    component_ns: "{{ neworg.name | lower }}"
   loop: "{{ orderers }}"
   loop_control:
     loop_var: orderer
@@ -28,7 +28,7 @@
   include_tasks: sign_orderer.yaml
   vars:
     orderer: "{{ org.services.orderers | first }}"
-    component_ns: "{{ org.name | lower }}-bank-com"
+    component_ns: "{{ org.name | lower }}"
   loop: "{{ network.organizations }}"
   loop_control:
     loop_var: org
@@ -38,7 +38,7 @@
 - name: Call update_orderer.yaml to add the new orderer to the existing network
   include_tasks: update_orderer.yaml
   vars:    
-    component_ns: "{{ org.name | lower }}-bank-com"
+    component_ns: "{{ org.name | lower }}"
     orderer: "{{ org.services.orderers | first }}"
   loop: "{{ network.organizations }}"
   loop_control:

@@ -90,5 +90,5 @@
   vars:    
     org_query: "organizations[? type=='orderer' && org_status=='existing']"
     org: "{{ network | json_query(org_query) | first }}"
-    component_ns: "{{ org.name | lower }}-bank-com"
+    component_ns: "{{ org.name | lower }}"
     orderer: "{{ org.services.orderers | first }}"

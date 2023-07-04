@@ -56,7 +56,7 @@
     org_query: "organizations[?name=='{{participant.name}}']"
     peer_query: "peers[?peerstatus=='new']"
     org: "{{ network | json_query(org_query) | first }}"
-    component_ns: "{{ org.name | lower }}-bank-com"
+    component_ns: "{{ org.name | lower }}"
     peer: "{{ org.services | json_query(peer_query) | first | default() }}"
   loop: "{{ participants }}"
   loop_control:

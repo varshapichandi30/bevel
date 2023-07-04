@@ -35,7 +35,7 @@
         org_status: new
         cli: enabled
         ca_data:
-          url: ca.manufacturer-bank-com:7054
+          url: ca.manufacturer:7054
           certificate: file/server.crt
 
         cloud_provider: aws
@@ -68,7 +68,7 @@
         services:
           ca:
             name: ca
-            subject: "/C=CH/ST=Zurich/L=Zurich/O=Manufacturer/CN=ca.manufacturer-bank-com"
+            subject: "/C=CH/ST=Zurich/L=Zurich/O=Manufacturer/CN=ca.manufacturer"
             type: ca
             grpc:
               port: 7054
@@ -156,7 +156,7 @@
         name: "configuration/roles/create/peers"
       vars:
         build_path: "./build"
-        namespace: "{{ item.name | lower}}-bank-com"
+        namespace: "{{ item.name | lower}}"
         component_type: "{{ item.type | lower}}"
         component_services: "{{ item.services }}"
         vault: "{{ item.vault }}"

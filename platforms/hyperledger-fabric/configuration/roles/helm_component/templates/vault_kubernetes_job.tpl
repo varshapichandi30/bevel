@@ -29,7 +29,7 @@ spec:
       role: vault-role
       address: {{ vault.url }}
       authpath: {{ network.env.type }}{{ component_ns }}-auth
-      policy: vault-crypto-{{ component_type }}-{{ name }}-bank-com-ro
+      policy: vault-crypto-{{ component_type }}-{{ name }}-ro
       secret_path: {{ vault.secret_path }}
       serviceaccountname: vault-auth
       imagesecretname: regcred

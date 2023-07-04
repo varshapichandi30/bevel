@@ -67,7 +67,7 @@
         services:
           ca:
             name: ca
-            subject: "/C=GB/ST=London/L=London/O=Orderer/CN=ca.supplychain-bank-com"
+            subject: "/C=GB/ST=London/L=London/O=Orderer/CN=ca.supplychain"
             type: ca
             grpc:
               port: 7054
@@ -112,7 +112,7 @@
         name: "configuration/roles/create/orderers"
       vars:
         build_path: "./build"
-        namespace: "{{ item.name | lower}}-bank-com"
+        namespace: "{{ item.name | lower}}"
         component_type: "{{ item.type | lower}}"
         component_services: "{{ item.services }}"
         vault: "{{ item.vault }}"

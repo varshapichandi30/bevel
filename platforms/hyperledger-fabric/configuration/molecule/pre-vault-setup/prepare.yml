@@ -153,14 +153,14 @@
     changed_when: false
     delegate_to: localhost
   
-  - name: create testpeer-bank-com namespace
+  - name: create testpeer namespace
     shell: |
-      kubectl create namespace testpeer-bank-com
+      kubectl create namespace testpeer
     changed_when: false
     delegate_to: localhost
   
-  - name: create testorderer-bank-com namespace
+  - name: create testorderer namespace
     shell: |
-      kubectl create namespace testorderer-bank-com
+      kubectl create namespace testorderer
     changed_when: false
     delegate_to: localhost

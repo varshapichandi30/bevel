@@ -18,7 +18,7 @@
   include_tasks: nested_main.yaml  
   vars:
     component_name: "{{ neworg.name | lower }}"
-    component_ns: "{{ neworg.name | lower }}-bank-com"
+    component_ns: "{{ neworg.name | lower }}"
   loop: "{{ neworg.services.orderers }}"
   loop_control:
     loop_var: orderer

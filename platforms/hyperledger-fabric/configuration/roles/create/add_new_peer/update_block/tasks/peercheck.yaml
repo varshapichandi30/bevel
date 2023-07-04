@@ -4,10 +4,10 @@
 #  SPDX-License-Identifier: Apache-2.0
 ##############################################################################################
 
-- name: "Check peer pod is up for {{ org.name | lower }}-bank-com"
+- name: "Check peer pod is up for {{ org.name | lower }}"
   k8s_info:
     kind: Pod
-    namespace: "{{ org.name | lower }}-bank-com"
+    namespace: "{{ org.name | lower }}"
     kubeconfig: "{{ org.k8s.config_file }}"
     context: "{{ org.k8s.context }}"
     label_selectors:

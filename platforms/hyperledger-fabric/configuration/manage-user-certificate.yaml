@@ -20,7 +20,7 @@
   gather_facts: no
   tasks:
     # Check if CA server is available
-    - name: "Checking if CA server exists in {{ item.name | lower }}-bank-com"
+    - name: "Checking if CA server exists in {{ item.name | lower }}"
       include_role:
         name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
       vars:
@@ -28,7 +28,7 @@
         component: "{{ item.name | lower}}"
         component_type: "Pod"
         component_services: "{{ item.services }}"
-        namespace: "{{ item.name | lower }}-bank-com"
+        namespace: "{{ item.name | lower }}"
         kubernetes: "{{ item.k8s }}"
         label_selectors:
           - name = {{ component_name }}
@@ -37,7 +37,7 @@
       loop: "{{ network['organizations'] }}"
 
     # Check if CA CLI is available
-    - name: "Checking if CA CLI exists in {{ item.name | lower }}-bank-com"
+    - name: "Checking if CA CLI exists in {{ item.name | lower }}"
       include_role:
         name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
       vars:
@@ -45,7 +45,7 @@
         component: "{{ item.name | lower}}"
         component_type: "Pod"
         component_services: "{{ item.services }}"
-        namespace: "{{ item.name | lower }}-bank-com"
+        namespace: "{{ item.name | lower }}"
         kubernetes: "{{ item.k8s }}"
         label_selectors:
           - name = {{ component_name }}
@@ -60,7 +60,7 @@
       include_role:
         name: "create/users"
       vars:
-        component_name: "{{ item.name | lower}}-bank-com"
+        component_name: "{{ item.name | lower}}"
         component_type: "{{ item.type | lower}}"
         org_name: "{{ item.name }}"
         services: "{{ item.services }}"

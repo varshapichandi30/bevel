@@ -9,12 +9,12 @@
 #############################################################################################
 
 # Check if CA server is available
-- name: "waiting for the CA server to be created in {{ item.name | lower }}-bank-com"
+- name: "waiting for the CA server to be created in {{ item.name | lower }}"
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: "Pod"
-    namespace: "{{ item.name | lower }}-bank-com"
+    namespace: "{{ item.name | lower }}"
     component_name: "{{ component_services.ca.name }}"
     label_selectors:
       - name = {{ component_name }}
@@ -187,7 +187,7 @@
   include_role:
     name: create/k8s_secrets
   vars: 
-    namespace: "{{ item.name | lower }}-bank-com"
+    namespace: "{{ item.name | lower }}"
     vault: "{{ item.vault }}"
     kubernetes: "{{ item.k8s }}"
     check: "ambassador_peer"

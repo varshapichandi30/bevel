@@ -74,7 +74,7 @@
   k8s_info:
     api_version: "helm.toolkit.fluxcd.io/v2beta1"
     kind: "HelmRelease"
-    namespace: "{{ item.name | lower }}-bank-com"
+    namespace: "{{ item.name | lower }}"
     kubeconfig: "{{  item.k8s.config_file }}"
     context: "{{ item.k8s.context }}"
     name: "{{ item.name | lower }}-{{ peer.name }}"
@@ -90,12 +90,12 @@
   when: refresh_cert is defined and refresh_cert == 'true'
 
 # Wait for peer pods to be in the state of running
-- name: "Waiting for peer pod {{ peer.name }} in {{ item.name | lower }}-bank-com"
+- name: "Waiting for peer pod {{ peer.name }} in {{ item.name | lower }}"
   include_role:
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: "Pod"
-    namespace: "{{ item.name | lower }}-bank-com"
+    namespace: "{{ item.name | lower }}"
     component_name: "{{ peer.name }}"
     kubernetes: "{{ item.k8s }}"
     label_selectors:

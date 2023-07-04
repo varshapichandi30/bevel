@@ -23,7 +23,7 @@
     dest: "./build/generate-crypto-{{ component_name }}-{{ peer_name }}.sh"
   vars:
     component_name: "{{ item.name | lower }}"
-    component_ns: "{{ item.name | lower }}-bank-com"
+    component_ns: "{{ item.name | lower }}"
     component_country: "{{ item.country }}"
     component_subject: "{{ item.subject }}"
     component_state: "{{ item.state }}"
@@ -44,7 +44,7 @@
     dest: "./build/generate-crypto-{{ component_name }}.sh"
   vars:
     component_name: "{{ item.name | lower }}"
-    component_ns: "{{ item.name | lower }}-bank-com"
+    component_ns: "{{ item.name | lower }}"
     component_subject: "{{ item.subject }}"
     component_country: "{{ item.country }}"
     component_state: "{{ item.state }}"
@@ -61,7 +61,7 @@
     dest: "./build/generate-crypto-{{ component_name }}.sh"
   vars:
     component_name: "{{ item.name | lower }}"
-    component_ns: "{{ item.name | lower }}-bank-com"
+    component_ns: "{{ item.name | lower }}"
     component_subject: "{{ item.subject }}"
     component_country: "{{ item.country }}"
     component_state: "{{ item.state }}"

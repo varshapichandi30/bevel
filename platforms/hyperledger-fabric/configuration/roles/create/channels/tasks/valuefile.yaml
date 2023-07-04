@@ -12,7 +12,7 @@
 - name: "Check orderer pod is up"
   include_tasks: orderercheck.yaml
   vars:
-    orderer_namespace: "{{ ordererorg.name | lower }}-bank-com"
+    orderer_namespace: "{{ ordererorg.name | lower }}"
     orderer_kubeconfig: "{{ ordererorg.k8s.config_file }}"
     orderer_context: "{{ ordererorg.k8s.context }}"
   loop: "{{ network['organizations'] }}"
@@ -42,7 +42,7 @@
     name: "{{ org.name | lower }}"
     type: "create_channel_job"
     component_name: "{{item.channel_name|lower}}"
-    component_ns: "{{ peer.name | lower}}-bank-com"
+    component_ns: "{{ peer.name | lower}}"
     peer_name: "{{ peer | json_query('peers[*].name') | first }}"
     git_protocol: "{{ org.gitops.git_protocol }}"
     git_url: "{{ org.gitops.git_url }}"

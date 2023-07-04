@@ -35,7 +35,7 @@
     channel_name: "{{ channel_name }}"
     storage_class: "{{ org.name }}sc"
     release_dir: "{{ build_path }}"
-    orderer_component: "{{ orderer.name | lower }}.{{ org.name | lower }}-bank-com"
+    orderer_component: "{{ orderer.name | lower }}.{{ org.name | lower }}"
     orderer_address: "{{ orderer.name | lower }}.{{ org.external_url_suffix }}:8443"
   when: existing_cli.resources|length == 0
 

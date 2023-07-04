@@ -45,7 +45,7 @@
       vars:
         release_dir: "{{ playbook_dir }}/test"
         component_type_name: test
-        component_name: test-bank-com
+        component_name: test
 #########################################################################
   tasks:
     - name: Deploy the storageclass on cluster

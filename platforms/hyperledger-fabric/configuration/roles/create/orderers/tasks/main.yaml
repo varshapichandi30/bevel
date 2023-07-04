@@ -13,7 +13,7 @@
 # to the build directory
 - name: Fetch the genesis block from vault
   shell: |
-    vault kv get -field={{ network.env.type }}GenesisBlock {{ item.vault.secret_path | default('secretsv2') }}/crypto/ordererOrganizations/{{ item.name | lower }}-bank-com > genesis.block.base64
+    vault kv get -field={{ network.env.type }}GenesisBlock {{ item.vault.secret_path | default('secretsv2') }}/crypto/ordererOrganizations/{{ item.name | lower }} > genesis.block.base64
     mkdir -p ./build/channel-artifacts
     mv genesis.block.base64 ./build/channel-artifacts/
   environment:

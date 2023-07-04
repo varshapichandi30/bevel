@@ -13,7 +13,7 @@
     name: "{{ playbook_dir }}/../../shared/configuration/roles/check/helm_component"
   vars:
     component_type: "Job"
-    namespace: "{{ participant.name | lower}}-bank-com"
+    namespace: "{{ participant.name | lower}}"
     component_name: "joinchannel-{{ peer.name }}-{{ channel_name }}"
     kubernetes: "{{ org.k8s }}"
   loop: "{{ participant.peers }}"
@@ -29,7 +29,7 @@
     type: "anchorpeer_job"    
     component_name: "anchorpeer-{{ channel_name }}-{{ participant.name }}"
     peer_name: "{{ peer.name }}"
-    component_ns: "{{ participant.name | lower}}-bank-com"
+    component_ns: "{{ participant.name | lower}}"
     git_protocol: "{{ org.gitops.git_protocol }}"
     git_url: "{{ org.gitops.git_url }}"
     git_branch: "{{ org.gitops.branch }}"
