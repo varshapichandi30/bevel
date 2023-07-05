@@ -7,7 +7,7 @@ Orderer: &OrdererDefaults
   Addresses:
 {% for orderer in orderers %}
 {% if provider == 'none' %}
-    - {{ orderer.name }}.{{ orderer.org_name | lower }}-bank-com:7050
+    - {{ orderer.name }}.{{ orderer.org_name | lower }}:7050
 {% else %}
     - {{ orderer.uri }}
 {% endif %}
@@ -24,7 +24,7 @@ Orderer: &OrdererDefaults
 {% for org in network.organizations %}
 {% if org.services.orderers is defined and org.services.orderers|length > 0 %}
 {% for i in range(consensus.replicas) %}
-      - {{ consensus.name }}-{{ i }}.{{ consensus.type }}.{{ org.name |lower }}-bank-com.svc.cluster.local:{{ consensus.grpc.port }}
+      - {{ consensus.name }}-{{ i }}.{{ consensus.type }}.{{ org.name |lower }}.svc.cluster.local:{{ consensus.grpc.port }}
 {% endfor %}
 {% endif %}
 {% endfor %}
@@ -33,7 +33,7 @@ Orderer: &OrdererDefaults
   EtcdRaft:
     Consenters:
 {% for orderer in orderers %}
-{% set component_ns = orderer.org_name.lower() + '-bank-com' %}
+{% set component_ns = orderer.org_name.lower() + '' %}
 {% if provider == 'none' %}
       - Host: {{orderer.name}}.{{ component_ns }}
         Port: 7050
