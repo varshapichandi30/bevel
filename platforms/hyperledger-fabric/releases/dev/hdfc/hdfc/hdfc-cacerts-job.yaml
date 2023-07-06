@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: hdfc-cacerts-job
+  namespace: hdfc
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  interval: 1m
+  releaseName: hdfc-cacerts-job
+  chart:
+    spec:
+      interval: 1m
+      sourceRef:
+        kind: GitRepository
+        name: flux-local
+        namespace: flux-local
+      chart: platforms/hyperledger-fabric/charts/generate_cacerts
+  values:
+    metadata:
+      name: hdfc
+      component_name: hdfc
+      namespace: hdfc    
+      images:
+        fabrictools: hyperledger/fabric-tools:2.2.2
+        alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+
+    vault:
+      role: vault-role
+      address: http://3.87.238.119:8200
+      authpath: localhdfc-auth
+      secretcryptoprefix: secretsv2/data/crypto/peerOrganizations/hdfc/ca
+      secretcredentialsprefix: secretsv2/data/credentials/hdfc/ca/hdfc
+      serviceaccountname: vault-auth
+      imagesecretname: regcred
+      
+    ca:
+      subject: /C=CH/ST=Zurich/L=Zurich/O=Hdfc/CN=ca.hdfc
